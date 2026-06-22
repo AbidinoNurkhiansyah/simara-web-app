@@ -39,7 +39,7 @@ export const AppRouter = () => {
             <Route path="/layanan/wakaf" element={<Wakaf />} />
             <Route path="/layanan/madrasah" element={<Madrasah />} />
             <Route path="*" element={
-              <div className="max-w-7xl mx-auto px-4 py-20 text-center">
+              <div className="container-custom py-20 text-center">
                 <h1 className="text-4xl font-extrabold text-primary mb-4">404</h1>
                 <p className="text-gray-500 mb-8">Maaf, halaman yang Anda cari tidak dapat ditemukan.</p>
                 <a href="/" className="px-6 py-3 rounded-xl bg-primary text-white font-nunito font-bold hover:bg-primary-hover shadow-md transition-all">Kembali ke Beranda</a>

@@ -106,7 +106,7 @@ export default function Edukasi() {
     <div className="pb-24 space-y-16">
       {/* 1. Header Page */}
       <section className="bg-gradient-to-br from-primary/10 to-transparent pt-16 pb-20 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+        <div className="container-custom text-center space-y-4">
           <span className="text-primary font-bold text-xs uppercase tracking-widest bg-primary/10 px-4 py-1.5 rounded-full border border-primary/15">
             Perpustakaan Digital KUA
           </span>
@@ -120,7 +120,7 @@ export default function Edukasi() {
       </section>
 
       {/* 2. Pencarian & Filter Tabs */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="container-custom">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 border-b border-gray-200 pb-8">
           {/* Tabs Filter */}
           <div className="flex flex-wrap gap-2 w-full md:w-auto">

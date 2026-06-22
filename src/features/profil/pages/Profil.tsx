@@ -5,7 +5,7 @@ export default function Profil() {
     <div className="pb-24 space-y-20">
       {/* 1. Header Hero Page */}
       <section className="bg-gradient-to-br from-primary/10 to-transparent pt-16 pb-20 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+        <div className="container-custom text-center space-y-4">
           <span className="text-primary font-bold text-xs uppercase tracking-widest bg-primary/10 px-4 py-1.5 rounded-full border border-primary/15">
             Kenali Kami Lebih Dekat
           </span>
@@ -19,7 +19,7 @@ export default function Profil() {
       </section>
 
       {/* 2. Foto KUA & Sejarah Singkat */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Sisi Kiri: Foto/Visual Kantor */}
           <div className="lg:col-span-5 relative">
@@ -63,7 +63,7 @@ export default function Profil() {
 
       {/* 3. Visi Misi & Nilai Dasar */}
       <section className="bg-primary/5 py-20 border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Visi */}
             <div className="bg-white p-8 rounded-3xl shadow-md border border-gray-100 text-left space-y-4 relative overflow-hidden">
@@ -112,7 +112,7 @@ export default function Profil() {
       </section>
 
       {/* 4. Lokasi Kantor & Embed Map */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="container-custom space-y-12">
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <h2 className="text-3xl font-extrabold text-text-primary tracking-tight">Lokasi Kantor KUA</h2>
           <p className="text-text-secondary text-sm md:text-base leading-relaxed">

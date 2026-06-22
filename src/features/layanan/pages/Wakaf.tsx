@@ -22,7 +22,7 @@ export default function Wakaf() {
     <div className="pb-24 space-y-16">
       {/* Header */}
       <section className="bg-gradient-to-br from-amber-500/10 to-transparent pt-16 pb-20 border-b border-amber-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+        <div className="container-custom text-center space-y-4">
           <span className="text-amber-600 font-bold text-xs uppercase tracking-widest bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-200/50">
             Administrasi Wakaf
           </span>

@@ -83,7 +83,7 @@ export default function TempatIbadah() {
     <div className="pb-24 space-y-16">
       {/* Header */}
       <section className="bg-gradient-to-br from-teal-500/10 to-transparent pt-16 pb-20 border-b border-teal-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+        <div className="container-custom text-center space-y-4">
           <span className="text-teal-600 font-bold text-xs uppercase tracking-widest bg-teal-500/10 px-4 py-1.5 rounded-full border border-teal-200/50">
             Fasilitas Keagamaan
           </span>
@@ -97,7 +97,7 @@ export default function TempatIbadah() {
       </section>
 
       {/* Filter & Search */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="container-custom">
         <div className="flex flex-col md:flex-row gap-4 items-center justify-between border-b border-gray-200 pb-8">
           {/* Kelurahan Tabs */}
           <div className="flex flex-wrap gap-2 w-full md:w-auto">

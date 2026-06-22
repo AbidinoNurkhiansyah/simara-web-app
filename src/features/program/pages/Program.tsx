@@ -51,7 +51,7 @@ export default function Program() {
     <div className="pb-24 space-y-20">
       {/* Header */}
       <section className="bg-gradient-to-br from-primary/10 to-transparent pt-16 pb-20 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+        <div className="container-custom text-center space-y-4">
           <span className="text-primary font-bold text-xs uppercase tracking-widest bg-primary/10 px-4 py-1.5 rounded-full border border-primary/15">
             Aktivitas & Inovasi KUA
           </span>
@@ -65,7 +65,7 @@ export default function Program() {
       </section>
 
       {/* Program Terbaru */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="container-custom space-y-12">
         <div className="text-left space-y-2">
           <h2 className="text-3xl font-extrabold text-text-primary">Program & Kegiatan Terbaru</h2>
           <p className="text-text-secondary text-sm md:text-base">Inovasi pelayanan dan agenda kegiatan yang sedang aktif berjalan bulan ini.</p>
@@ -119,7 +119,7 @@ export default function Program() {
 
       {/* Program Unggulan */}
       <section className="bg-primary/5 py-20 border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div className="container-custom space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <h2 className="text-3xl font-extrabold text-text-primary">Program Kerja Unggulan</h2>
             <p className="text-text-secondary text-sm md:text-base">Komitmen jangka panjang KUA Karawang Barat untuk optimalisasi pelayanan keagamaan.</p>
