@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Heart, Compass, BookOpen, GraduationCap, MapPin, Clock, ChevronLeft, ChevronRight, Award, Users, CheckCircle2 } from 'lucide-react'
+import { Heart, Compass, BookOpen, GraduationCap, ChevronLeft, ChevronRight, Users, CheckCircle2, ExternalLink, FileCheck } from 'lucide-react'
 
 // Dummy Data
 const stats = {
-  marriagesThisMonth: 142,
-  isbatsThisMonth: 28,
+  marriagesThisMonth: 93,
+  isbatsThisMonth: 5,
   yearToDatePartners: 384
 }
 
@@ -96,84 +96,80 @@ export default function Beranda() {
 
   return (
     <div className="space-y-24 pb-20">
-      {/* 1. Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-primary/5 to-transparent pt-20 pb-24 md:pt-28 md:pb-32">
-        <div className="absolute inset-y-0 right-0 w-1/2 hidden lg:block opacity-25">
-          {/* Subtle geometric pattern using pure CSS or SVG in background */}
-          <div className="absolute inset-0 bg-[radial-gradient(#31502C_1.5px,transparent_1.5px)] [background-size:24px_24px] rounded-full scale-75 transform translate-x-20 -translate-y-20"></div>
+      <section className="relative w-full h-[280px] sm:h-[320px] lg:h-[380px] overflow-visible flex items-center bg-background z-20">
+        {/* Background Banner Full-Bleed (Mentok Kanan-Kiri & Terlihat Semua) */}
+        <div className="absolute inset-0 w-full h-full z-0">
+          <img
+            src="/images/banner.webp"
+            alt="KUA PUSAKA Karawang Barat"
+            className="w-full h-full object-cover"
+          />
+          {/* Gelap overlay agar teks kuning dan putih terbaca sangat kontras */}
+          <div className="absolute inset-0 bg-black/45"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Teks Hero */}
-            <div className="lg:col-span-7 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-nunito font-bold tracking-wide uppercase">
-                <Clock className="w-3.5 h-3.5 text-accent" />
-                <span>Buka: Senin - Jumat (07:30 - 16:00 WIB)</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-text-primary tracking-tight leading-tight">
-                Pusat Pelayanan Keagamaan <br />
-                <span className="text-primary bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
-                  KUA PUSAKA Karawang Barat
-                </span>
+        {/* Konten Hero di Atas Banner */}
+        <div className="container-custom w-full z-10 relative">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6">
+            {/* Sisi Kiri: Judul KUA & Jadwal */}
+            <div className="text-left space-y-2">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-accent leading-tight tracking-tight uppercase font-nunito">
+                Kantor Urusan Agama Kecamatan<br />Karawang Barat
               </h1>
-              <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-xl">
-                Selamat datang di portal informasi resmi Kantor Urusan Agama Kecamatan Karawang Barat. Kami siap melayani urusan pernikahan, konsultasi keluarga, bimbingan pranikah, dan legalitas aset wakaf secara prima.
+              <p className="text-sm sm:text-base lg:text-lg text-white font-medium tracking-wide">
+                Senin - Jumat 07.30 s/d 16.00
               </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <a
-                  href="#alur-nikah"
-                  className="flex items-center justify-center px-8 py-4 rounded-2xl bg-primary text-white font-nunito font-extrabold text-base hover:bg-primary-hover shadow-lg shadow-primary/20 hover:shadow-xl transition-all"
-                >
-                  Panduan Daftar Nikah
-                </a>
-                <a
-                  href="https://maps.google.com/?q=KUA+Kecamatan+Karawang+Barat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-white text-primary border border-gray-200 font-nunito font-extrabold text-base hover:bg-gray-50 shadow-sm transition-all"
-                >
-                  <MapPin className="w-5 h-5 text-accent" />
-                  Kunjungi Kantor
-                </a>
-              </div>
             </div>
 
-            {/* Stats Card Stack */}
-            <div className="lg:col-span-5 relative">
-              <div className="absolute inset-0 bg-accent/20 rounded-3xl blur-3xl -z-10 transform translate-x-4 translate-y-4"></div>
-              
-              <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-2xl space-y-6">
-                <h3 className="font-nunito font-extrabold text-lg text-text-primary border-b border-gray-100 pb-4 flex items-center gap-2">
-                  <Award className="w-5 h-5 text-accent" />
-                  Statistik Layanan Bulan Ini
-                </h3>
+            {/* Sisi Kanan: Tombol Kunjungi */}
+            <div className="flex-shrink-0 self-start sm:self-center">
+              <a
+                href="https://maps.google.com/?q=KUA+Kecamatan+Karawang+Barat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-primary border border-white hover:bg-gray-50 rounded-full font-nunito font-black text-sm shadow-md transition-all uppercase tracking-wider"
+              >
+                <span>Kunjungi</span>
+                <ExternalLink className="w-4 h-4 text-primary" />
+              </a>
+            </div>
+          </div>
+        </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 rounded-2xl bg-primary/5 border border-primary/10 text-center">
-                    <span className="block font-nunito font-extrabold text-3xl text-primary">{stats.marriagesThisMonth}</span>
-                    <span className="block font-roboto text-xs text-text-secondary mt-1">Pernikahan Baru</span>
-                  </div>
-                  <div className="p-4 rounded-2xl bg-primary/5 border border-primary/10 text-center">
-                    <span className="block font-nunito font-extrabold text-3xl text-primary">{stats.isbatsThisMonth}</span>
-                    <span className="block font-roboto text-xs text-text-secondary mt-1">Isbat Nikah</span>
+        {/* Overlapping Stats Cards di Bawah Banner */}
+        <div className="absolute inset-x-0 bottom-0 translate-y-1/2 z-30">
+          <div className="container-custom">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
+              {/* Card 1: PERNIKAHAN */}
+              <div className="bg-white rounded-3xl p-4 sm:p-6 lg:p-8 shadow-xl border border-gray-100/50 flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 transition-all hover:shadow-2xl">
+                <div className="p-3 bg-primary/5 rounded-2xl text-primary flex-shrink-0">
+                  <Users className="w-8 h-8 sm:w-10 sm:h-10 text-primary" strokeWidth={1.5} />
+                </div>
+                <div className="text-center md:text-left">
+                  <span className="block font-nunito font-extrabold text-[10px] sm:text-xs md:text-sm text-primary uppercase tracking-wider">PERNIKAHAN</span>
+                  <div className="mt-0.5 sm:mt-1 flex items-baseline justify-center md:justify-start gap-1">
+                    <span className="font-nunito font-black text-2xl sm:text-3xl md:text-4xl text-accent">
+                      {stats.marriagesThisMonth.toString().padStart(3, '0')}
+                    </span>
+                    <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-text-secondary">/ Bulan ini</span>
                   </div>
                 </div>
+              </div>
 
-                <div className="p-5 rounded-2xl bg-accent/10 border border-accent/20 flex items-center gap-4">
-                  <div className="p-3 rounded-xl bg-white text-primary shadow-sm">
-                    <Users className="w-6 h-6" />
-                  </div>
-                  <div className="text-left">
-                    <span className="block font-nunito font-extrabold text-xl text-primary">{stats.yearToDatePartners} Pasang</span>
-                    <span className="block font-roboto text-xs text-text-secondary">Suscatin Lulus Tahun Ini</span>
+              {/* Card 2: ISBAT NIKAH */}
+              <div className="bg-white rounded-3xl p-4 sm:p-6 lg:p-8 shadow-xl border border-gray-100/50 flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 transition-all hover:shadow-2xl">
+                <div className="p-3 bg-primary/5 rounded-2xl text-primary flex-shrink-0">
+                  <FileCheck className="w-8 h-8 sm:w-10 sm:h-10 text-primary" strokeWidth={1.5} />
+                </div>
+                <div className="text-center md:text-left">
+                  <span className="block font-nunito font-extrabold text-[10px] sm:text-xs md:text-sm text-primary uppercase tracking-wider">ISBAT NIKAH</span>
+                  <div className="mt-0.5 sm:mt-1 flex items-baseline justify-center md:justify-start gap-1">
+                    <span className="font-nunito font-black text-2xl sm:text-3xl md:text-4xl text-accent">
+                      {stats.isbatsThisMonth.toString().padStart(2, '0')}
+                    </span>
+                    <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-text-secondary">/ Bulan ini</span>
                   </div>
                 </div>
-
-                <p className="font-roboto text-[11px] text-gray-400 text-center italic">
-                  *Pembaruan berkala berdasarkan data lapangan KUA Karawang Barat
-                </p>
               </div>
             </div>
           </div>
@@ -181,7 +177,7 @@ export default function Beranda() {
       </section>
 
       {/* 2. Layanan Section (4 Card Layanan) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="container-custom pt-20 lg:pt-24">
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <h2 className="text-3xl md:text-4xl font-extrabold text-text-primary">
             Layanan Unggulan Kami
@@ -218,7 +214,7 @@ export default function Beranda() {
 
       {/* 3. Alur Pendaftaran Section */}
       <section id="alur-nikah" className="bg-primary/5 py-20 border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
             <h2 className="text-3xl md:text-4xl font-extrabold text-text-primary">
               Alur Pendaftaran Nikah
@@ -299,7 +295,7 @@ export default function Beranda() {
       </section>
 
       {/* 4. Slideshow Program Terbaru */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="container-custom">
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-12">
           <h2 className="text-3xl md:text-4xl font-extrabold text-text-primary">
             Program Kerja Kami
