@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
-  Heart,
   Compass,
-  BookOpen,
-  GraduationCap,
   ChevronLeft,
   ChevronRight,
   Users,
-  CheckCircle2,
   ExternalLink,
   FileCheck,
+  School,
+  Handshake,
 } from "lucide-react";
 
 // Dummy Data
@@ -22,87 +20,119 @@ const stats = {
 
 const services = [
   {
-    title: "Kursus Calon Pengantin (Suscatin)",
+    title: "Suscatin",
     description:
-      "Bimbingan pranikah intensif untuk mewujudkan keluarga sakinah, mawaddah, warahmah.",
+      "Kursus singkat yang diselenggarakan oleh Kantor Urusan Agama (KUA) untuk calon pengantin",
     path: "/layanan/suscatin",
-    icon: Heart,
-    color: "from-pink-500/20 to-rose-500/20",
-    iconColor: "text-rose-600",
-    borderColor: "hover:border-rose-400",
+    icon: Users,
+    image:
+      "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800",
   },
   {
     title: "Tempat Ibadah",
     description:
-      "Direktori tempat ibadah di wilayah Karawang Barat untuk kemudahan akses ibadah masyarakat.",
+      "List data tempat atau fasilitas Keagamaan antar umat beragama di Kecamatan Karawang Barat",
     path: "/layanan/tempat-ibadah",
     icon: Compass,
-    color: "from-emerald-500/20 to-teal-500/20",
-    iconColor: "text-teal-600",
-    borderColor: "hover:border-teal-400",
+    image: "/images/tempat-ibadah.webp",
   },
   {
-    title: "Wakaf",
+    title: "Waqaf",
     description:
-      "Konsultasi dan sertifikasi tanah wakaf secara aman, transparan, dan sesuai syariat.",
+      "konsep dalam Islam di mana seseorang menyerahkan harta benda untuk tujuan amal secara permanen",
     path: "/layanan/wakaf",
-    icon: BookOpen,
-    color: "from-amber-500/20 to-yellow-500/20",
-    iconColor: "text-amber-600",
-    borderColor: "hover:border-amber-400",
+    icon: Handshake,
+    image: "/images/wakaf.webp",
   },
   {
     title: "Madrasah",
     description:
-      "Daftar dan profil lembaga pendidikan madrasah formal & non-formal di Karawang Barat.",
+      "List data sekolah agama islam dari berbagai tingkatan di Kecamatan Karawang Barat",
     path: "/layanan/madrasah",
-    icon: GraduationCap,
-    color: "from-blue-500/20 to-indigo-500/20",
-    iconColor: "text-indigo-600",
-    borderColor: "hover:border-indigo-400",
+    icon: School,
+    image: "/images/madrasah.webp",
   },
 ];
 
 const steps = [
   {
     id: 1,
-    title: "Daftar Akun Simkah",
-    desc: "Akses web simkah4.kemenag.go.id dan daftarkan akun Anda.",
+    title: "Siapkan Berkas Persyaratan",
+    image: "/images/step-pernikahan/step-1.webp",
+    desc: [
+      "Foto Copy KTP",
+      "Foto Copy KTP Orang Tua",
+      "Foto Copy KTP Wali Nikah",
+      "Foto Copy KTP Saksi Nikah",
+      "Foto Copy Ijazah",
+      "Foto Copy KK",
+      "Foto Copy Akta Kelahiran",
+      "Pas Photo 2x3 (4 lembar) & 4x6(1 lembar)",
+      "Akta Cerai (Bagi Duda/Janda cerai)",
+      "N6 (Bagi Duda/Janda Mati)",
+      "Surat Izin Kawin dari Komandan (Bagi Anggota TNI.POLRI)",
+    ],
   },
   {
     id: 2,
-    title: "Pilih KUA & Jadwal",
-    desc: "Pilih KUA Karawang Barat serta pilih tanggal & jam akad.",
+    title: "Datang Ke Kelurahan/Desa",
+    image: "/images/step-pernikahan/step-2.webp",
+    desc: [
+      "Meminta Formulir N1,N2,N3,N4,N5,N6 & SKW",
+      "Mengisi Formulir dan ditandatangani oleh Lurah/Kepala Desa",
+    ],
   },
   {
     id: 3,
-    title: "Lengkapi Data",
-    desc: "Isi biodata lengkap calon suami, istri, dan wali nikah.",
+    title: "Membawa Persyaratan ke KUA",
+    image: "/images/step-pernikahan/step-3.webp",
+    desc: [
+      "Membawa Semua Persyaratan dari Kelurahan/Desa",
+      "Meminta  Billing Pembayaran untuk ke Kantor POS",
+    ],
   },
   {
     id: 4,
-    title: "Unggah Berkas",
-    desc: "Upload scan KTP, KK, Akta Lahir, dan Surat Pengantar Kelurahan (N1-N4).",
+    title: "Membayar Billing Pembayaran",
+    image: "/images/step-pernikahan/step-4.webp",
+    desc: [
+      "Menyerahkan Billing Pembayaran dari KUA",
+      "Menyetorkan biaya Nikah",
+      "Meminta Slip Setoran",
+    ],
   },
   {
     id: 5,
-    title: "Verifikasi Petugas",
-    desc: "Petugas KUA akan memverifikasi berkas fisik dan online Anda.",
+    title: "Mempersiapkan Kelengkapan Administrasi",
+    image: "/images/step-pernikahan/step-5.webp",
+    desc: [
+      "Menyerahkan Slip Setoran dari Kantor POS (Asli & 4 Rangkap Foto Copy)",
+      "Menerima Surat untuk Penataran Calon Pengantin",
+    ],
   },
   {
     id: 6,
-    title: "Bimbingan Pranikah",
-    desc: "Calon pengantin wajib mengikuti pembekalan suscatin di KUA.",
+    title: "Penataran (Suscatin)",
+    image: "/images/step-pernikahan/step-6.webp",
+    desc: [
+      "Menerima Materi Bimbingan Kursus Calon Pengantin (Suscatin) dan Praktek Ijab Qobul.",
+    ],
   },
   {
     id: 7,
-    title: "Pelaksanaan Akad",
-    desc: "Akad dilaksanakan di KUA (Gratis) atau di luar KUA (PNBP Rp 600rb).",
+    title: "Prosesi Akad Nikah",
+    image: "/images/step-pernikahan/step-7.webp",
+    desc: [
+      "Menunggu dan Menghubungi Petugas KUA (Penghulu) pada saat pelaksanaan Akad Nikah.",
+    ],
   },
   {
     id: 8,
-    title: "Buku Nikah Terbit",
-    desc: "Kedua mempelai menerima buku nikah resmi setelah prosesi akad selesai.",
+    title: "Penyerahan Buku Nikah",
+    image: "/images/step-pernikahan/step-8.webp",
+    desc: [
+      "Penyerahan Buku Nikah kepada pengantin sebagai tanda bukti bahwa perkawinan yang telah dilaksanakan sah secara hukum negara.",
+    ],
   },
 ];
 
@@ -110,6 +140,7 @@ const programs = [
   {
     title: "Bimbingan Pranikah Angkatan XXI",
     tag: "Bimbingan Pasutri",
+    date: "12 Agustus 2026",
     desc: "Pembekalan pranikah intensif bagi calon pengantin angkatan baru untuk pemahaman sakinah keluarga.",
     image:
       "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=800",
@@ -117,6 +148,7 @@ const programs = [
   {
     title: "Sertifikasi Tanah Wakaf Masjid Jami",
     tag: "Program Wakaf",
+    date: "20 September 2026",
     desc: "Penyerahan akta ikrar wakaf masal secara gratis kepada pengurus masjid di wilayah Karawang Barat.",
     image:
       "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&q=80&w=800",
@@ -124,6 +156,7 @@ const programs = [
   {
     title: "Penyuluhan Zakat & Pemberdayaan Umat",
     tag: "Pemberdayaan Umat",
+    date: "05 Oktober 2026",
     desc: "Sosialisasi pengelolaan zakat bekerjasama dengan BAZNAS untuk kemaslahatan warga pra-sejahtera.",
     image:
       "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
@@ -132,7 +165,6 @@ const programs = [
 
 export default function Beranda() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [activeStep, setActiveStep] = useState(1);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -147,7 +179,7 @@ export default function Beranda() {
     setCurrentSlide((prev) => (prev - 1 + programs.length) % programs.length);
 
   return (
-    <div className="space-y-24 pb-20">
+    <div className="space-y-12 pb-20">
       <section className="relative w-full h-[280px] sm:h-[300px] lg:h-[300px] overflow-visible flex items-center bg-background z-20">
         {/* Background Banner Full-Bleed (Mentok Kanan-Kiri & Terlihat Semua) */}
         <div className="absolute inset-0 w-full h-full z-0">
@@ -171,20 +203,23 @@ export default function Beranda() {
                 Karawang Barat
               </h1>
               <p className="text-sm sm:text-base lg:text-lg text-white font-medium tracking-wide">
-                Senin - Jumat 07.30 s/d 16.00
+                Senin - Jumat 08.00 s/d 16.00
               </p>
             </div>
 
             {/* Sisi Kanan: Tombol Kunjungi */}
             <div className="flex-shrink-0 self-start sm:self-center">
               <a
-                href="https://maps.google.com/?q=KUA+Kecamatan+Karawang+Barat"
+                href="https://www.google.com/maps/place/KUA+Kec.+Karawang+Barat/@-6.3063436,107.3046829,20z/data=!4m6!3m5!1s0x2e6977c3a733af8f:0xf597a5a216080521!8m2!3d-6.3064892!4d107.3047657!16s%2Fg%2F1hm4cgwz6?entry=ttu&g_ep=EgoyMDI2MDYyMS4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-primary border border-white hover:bg-gray-50 rounded-full font-nunito font-black text-sm shadow-md transition-all uppercase tracking-wider"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-primary border border-white hover:bg-gray-50 rounded-full font-roboto font-semibold text-sm shadow-md transition-all tracking-wider"
               >
                 <span>Kunjungi</span>
-                <ExternalLink className="w-4 h-4 text-primary" />
+                <ExternalLink
+                  className="w-4 h-4 text-primary"
+                  strokeWidth={2.5}
+                />
               </a>
             </div>
           </div>
@@ -193,7 +228,7 @@ export default function Beranda() {
         {/* Overlapping Stats Cards di Bawah Banner */}
         <div className="absolute inset-x-0 bottom-0 translate-y-1/2 z-30">
           <div className="container-custom">
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 max-w-2xl mx-auto">
               {/* Card 1: PERNIKAHAN */}
               <div className="bg-white rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl border border-gray-100/50 flex flex-col md:flex-row items-center justify-center md:justify-start gap-4">
                 <div className="p-3 bg-primary/5 rounded-2xl text-primary flex-shrink-0">
@@ -207,10 +242,10 @@ export default function Beranda() {
                     PERNIKAHAN
                   </span>
                   <div className="mt-0.5 sm:mt-1 flex items-baseline justify-center md:justify-start gap-1">
-                    <span className="font-nunito font-black text-2xl sm:text-3xl md:text-4xl text-accent">
+                    <span className="font-roboto font-black text-2xl sm:text-3xl md:text-4xl text-accent">
                       {stats.marriagesThisMonth.toString().padStart(3, "0")}
                     </span>
-                    <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-text-secondary">
+                    <span className="text-[10px] sm:text-xs md:text-sm font-medium text-text-secondary">
                       / Bulan ini
                     </span>
                   </div>
@@ -226,14 +261,14 @@ export default function Beranda() {
                   />
                 </div>
                 <div className="text-center md:text-left">
-                  <span className="block font-nunito font-extrabold text-[10px] sm:text-xs md:text-sm text-primary uppercase tracking-wider">
+                  <span className="block font-nunito font-extrabold text-[10px] sm:text-xs md:text-lg text-primary uppercase tracking-wider">
                     ISBAT NIKAH
                   </span>
                   <div className="mt-0.5 sm:mt-1 flex items-baseline justify-center md:justify-start gap-1">
                     <span className="font-nunito font-black text-2xl sm:text-3xl md:text-4xl text-accent">
                       {stats.isbatsThisMonth.toString().padStart(2, "0")}
                     </span>
-                    <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-text-secondary">
+                    <span className="text-[10px] sm:text-xs md:text-sm font-medium text-text-secondary">
                       / Bulan ini
                     </span>
                   </div>
@@ -245,39 +280,36 @@ export default function Beranda() {
       </section>
 
       {/* 2. Layanan Section (4 Card Layanan) */}
-      <section className="container-custom pt-20 lg:pt-24">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-text-primary">
-            Layanan Unggulan Kami
-          </h2>
-          <p className="text-text-secondary text-sm md:text-base leading-relaxed">
-            KUA Karawang Barat menyediakan berbagai fasilitas layanan keagamaan
-            terpadu untuk memenuhi kebutuhan administratif dan spiritual
-            masyarakat.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+      <section className="container-custom pt-18 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((svc) => (
             <Link
               key={svc.title}
               to={svc.path}
-              className={`flex flex-col bg-white rounded-3xl p-6 border border-gray-100 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 group ${svc.borderColor}`}
+              className="flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-md hover:shadow-xl transition-all duration-300 group relative"
             >
-              <div
-                className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${svc.color} flex items-center justify-center transition-transform group-hover:scale-105`}
-              >
-                <svc.icon className={`w-7 h-7 ${svc.iconColor}`} />
+              <div className="h-40 w-full overflow-hidden bg-gray-50">
+                <img
+                  src={svc.image}
+                  alt={svc.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
-              <h3 className="font-nunito font-bold text-lg text-text-primary mt-6 text-left group-hover:text-primary transition-colors">
-                {svc.title}
-              </h3>
-              <p className="font-roboto text-sm text-text-secondary mt-2 text-left leading-relaxed flex-grow">
-                {svc.description}
-              </p>
-              <div className="mt-6 flex items-center gap-1.5 font-nunito font-extrabold text-xs text-primary group-hover:text-accent transition-colors">
-                <span>Pelajari Detail</span>
-                <ChevronRight className="w-3.5 h-3.5" />
+
+              <div className="absolute right-5 top-40 -translate-y-1/2 w-12 h-12 rounded-xl bg-[#2e4726] flex items-center justify-center text-[#eab308] shadow-lg z-10 transition-transform duration-300 group-hover:scale-110">
+                <svc.icon className="w-6 h-6" />
+              </div>
+
+              <div className="p-5 pt-7 flex flex-col flex-grow text-left">
+                <span className="font-nunito font-bold text-[10px] text-gray-400 uppercase tracking-widest mb-1">
+                  KUA PUSAKA
+                </span>
+                <h3 className="font-nunito font-extrabold text-lg text-text-primary group-hover:text-primary transition-colors">
+                  {svc.title}
+                </h3>
+                <p className="font-roboto text-sm text-text-secondary mt-2 leading-relaxed flex-grow">
+                  {svc.description}
+                </p>
               </div>
             </Link>
           ))}
@@ -285,102 +317,61 @@ export default function Beranda() {
       </section>
 
       {/* 3. Alur Pendaftaran Section */}
-      <section
-        id="alur-nikah"
-        className="bg-primary/5 py-20 border-y border-gray-100"
-      >
+      <section id="alur-nikah" className="bg-white py-20">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
             <h2 className="text-3xl md:text-4xl font-extrabold text-text-primary">
               Alur Pendaftaran Nikah
             </h2>
             <p className="text-text-secondary text-sm md:text-base leading-relaxed">
-              Panduan 8 langkah mudah pencatatan nikah secara online dan
-              langsung di Kantor Urusan Agama Kecamatan Karawang Barat.
+              Panduan lengkap tata cara administrasi dan pendaftaran nikah resmi
+              di wilayah kerja Kantor Urusan Agama Kecamatan Karawang Barat.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Stepper Deskripsi Detail */}
-            <div className="lg:col-span-5 space-y-6">
-              <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 space-y-6 text-left">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-accent text-primary font-nunito font-extrabold text-xl">
-                  {activeStep}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+            {steps.map((step) => (
+              <div key={step.id} className="flex flex-col text-left group">
+                {/* Header: Number and Title */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-accent font-nunito font-bold flex-shrink-0 shadow-md">
+                    {step.id}
+                  </div>
+                  <h3 className="font-nunito font-extrabold text-lg text-text-primary group-hover:text-primary transition-colors">
+                    {step.title}
+                  </h3>
                 </div>
-                <h3 className="font-nunito font-extrabold text-xl text-primary">
-                  {steps[activeStep - 1].title}
-                </h3>
-                <p className="font-roboto text-sm md:text-base text-text-secondary leading-relaxed">
-                  {steps[activeStep - 1].desc}
-                </p>
-                <div className="flex gap-2 pt-4">
-                  <button
-                    disabled={activeStep === 1}
-                    onClick={() =>
-                      setActiveStep((prev) => Math.max(1, prev - 1))
-                    }
-                    className="p-2 rounded-xl border border-gray-200 text-gray-400 hover:text-primary hover:bg-gray-50 disabled:opacity-50 disabled:hover:bg-transparent transition-colors"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <button
-                    disabled={activeStep === steps.length}
-                    onClick={() =>
-                      setActiveStep((prev) => Math.min(steps.length, prev + 1))
-                    }
-                    className="flex-grow flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-primary text-white font-nunito font-bold text-sm hover:bg-primary-hover disabled:opacity-50 transition-colors"
-                  >
-                    Langkah Berikutnya
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
+
+                {/* Circular Image Placeholder */}
+                <div className="h-30 rounded-full flex items-center justify-center mb-6 mx-auto">
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </div>
-            </div>
 
-            {/* Stepper Indikator Rantai */}
-            <div className="lg:col-span-7">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {steps.map((step) => {
-                  const isCurrent = step.id === activeStep;
-                  const isDone = step.id < activeStep;
-
-                  return (
-                    <button
-                      key={step.id}
-                      onClick={() => setActiveStep(step.id)}
-                      className={`p-5 rounded-2xl text-left border transition-all duration-300 flex flex-col justify-between h-36 ${
-                        isCurrent
-                          ? "bg-primary border-primary text-white shadow-lg shadow-primary/20 scale-102"
-                          : isDone
-                            ? "bg-white border-primary/20 text-primary"
-                            : "bg-white border-gray-100 text-text-primary hover:bg-gray-50"
-                      }`}
-                    >
-                      <div className="flex justify-between items-center w-full">
-                        <span
-                          className={`font-nunito font-bold text-xs ${isCurrent ? "text-accent" : "text-gray-400"}`}
-                        >
-                          STEP 0{step.id}
-                        </span>
-                        {isDone && (
-                          <CheckCircle2 className="w-5 h-5 text-accent fill-primary" />
-                        )}
-                      </div>
-                      <span className="font-nunito font-extrabold text-sm leading-snug mt-4">
-                        {step.title}
+                {/* Description List */}
+                <div className="space-y-2 text-text-secondary text-sm font-roboto flex-grow">
+                  {step.desc.map((item, idx) => (
+                    <div key={idx} className="flex gap-2">
+                      <span className="font-bold text-gray-400 select-none">
+                        {idx + 1}.
                       </span>
-                    </button>
-                  );
-                })}
+                      <span className="leading-relaxed">{item}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* 4. Slideshow Program Terbaru */}
-      <section className="container-custom">
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-12">
+      <section className="overflow-hidden w-full max-w-full">
+        {/* Title */}
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-10 md:mb-16 px-4">
           <h2 className="text-3xl md:text-4xl font-extrabold text-text-primary">
             Program Kerja Kami
           </h2>
@@ -390,66 +381,92 @@ export default function Beranda() {
           </p>
         </div>
 
-        {/* Carousel Container */}
-        <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white border border-gray-100">
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            {/* Foto Program */}
-            <div className="h-64 sm:h-80 lg:h-[400px] relative overflow-hidden bg-gray-100">
-              <img
-                src={programs[currentSlide].image}
-                alt={programs[currentSlide].title}
-                className="w-full h-full object-cover transform scale-102 hover:scale-105 transition-transform duration-700"
+        {/* Coverflow Carousel Container */}
+        <div className="relative w-full h-[380px] md:h-[420px] flex items-center justify-center">
+          {programs.map((prog, idx) => {
+            const diff = idx - currentSlide;
+            let offset = diff;
+            // Handle infinite visual loop mapping for 3 items
+            if (diff === programs.length - 1) offset = -1;
+            if (diff === -(programs.length - 1)) offset = 1;
+
+            let transformClasses = "opacity-0 scale-75 z-0 pointer-events-none";
+            if (offset === 0) {
+              transformClasses =
+                "opacity-100 scale-100 z-30 translate-x-0 shadow-2xl";
+            } else if (offset === -1) {
+              transformClasses =
+                "opacity-60 scale-[0.85] md:scale-90 z-20 -translate-x-[105%] sm:-translate-x-[100%] cursor-pointer hover:opacity-80 shadow-lg";
+            } else if (offset === 1) {
+              transformClasses =
+                "opacity-60 scale-[0.85] md:scale-90 z-20 translate-x-[105%] sm:translate-x-[100%] cursor-pointer hover:opacity-80 shadow-lg";
+            }
+
+            return (
+              <div
+                key={idx}
+                onClick={() => {
+                  if (offset === -1) prevSlide();
+                  if (offset === 1) nextSlide();
+                }}
+                className={`absolute w-[80%] sm:w-[60%] md:w-[50%] lg:w-[38%] h-full transition-all duration-700 ease-out rounded-3xl overflow-hidden bg-white border border-gray-100 flex flex-col ${transformClasses}`}
+              >
+                {/* Image Section */}
+                <div className="relative w-full h-[55%] md:h-[60%] bg-gray-100">
+                  <img
+                    src={prog.image}
+                    alt={prog.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3.5 py-1.5 rounded-xl bg-primary text-accent font-nunito font-semibold text-[10px] sm:text-xs uppercase tracking-tight shadow-md">
+                      {prog.tag}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content Section */}
+                <div className="p-5 sm:p-6 flex-grow flex flex-col justify-center text-left">
+                  <h3 className="text-lg sm:text-xl font-extrabold text-text-primary leading-tight mb-2">
+                    {prog.title}
+                  </h3>
+                  <span className="text-primary font-bold text-[10px] sm:text-xs uppercase tracking-widest block mb-1.5">
+                    {prog.date}
+                  </span>
+                  <p className="text-text-secondary text-xs sm:text-sm leading-relaxed line-clamp-3">
+                    {prog.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Navigation Controls */}
+        <div className="flex justify-center items-center gap-6 mt-12 md:mt-16">
+          <button
+            onClick={prevSlide}
+            className="p-3 rounded-full border border-gray-200 hover:bg-gray-50 text-primary transition-colors focus:outline-none"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <div className="flex gap-2">
+            {programs.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentSlide(idx)}
+                className={`h-2.5 rounded-full transition-all focus:outline-none ${
+                  idx === currentSlide ? "bg-primary w-8" : "bg-gray-300 w-2.5"
+                }`}
               />
-              <div className="absolute top-4 left-4">
-                <span className="px-3.5 py-1.5 rounded-xl bg-primary text-accent font-nunito font-extrabold text-xs uppercase tracking-wide shadow-md">
-                  {programs[currentSlide].tag}
-                </span>
-              </div>
-            </div>
-
-            {/* Detail Deskripsi */}
-            <div className="p-8 sm:p-12 flex flex-col justify-between text-left space-y-6">
-              <div className="space-y-4">
-                <span className="text-accent font-bold text-xs uppercase tracking-widest block">
-                  Update Program KUA
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-text-primary leading-tight">
-                  {programs[currentSlide].title}
-                </h3>
-                <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
-                  {programs[currentSlide].desc}
-                </p>
-              </div>
-
-              <div className="flex justify-between items-center pt-6 border-t border-gray-100">
-                <div className="flex gap-1.5">
-                  {programs.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentSlide(idx)}
-                      className={`w-2.5 h-2.5 rounded-full transition-all ${
-                        idx === currentSlide ? "bg-primary w-6" : "bg-gray-200"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={prevSlide}
-                    className="p-2.5 rounded-xl border border-gray-200 hover:bg-gray-50 text-primary transition-colors"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <button
-                    onClick={nextSlide}
-                    className="p-2.5 rounded-xl border border-gray-200 hover:bg-gray-50 text-primary transition-colors"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
+          <button
+            onClick={nextSlide}
+            className="p-3 rounded-full border border-gray-200 hover:bg-gray-50 text-primary transition-colors focus:outline-none"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
       </section>
     </div>
