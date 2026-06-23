@@ -1,4 +1,6 @@
 import { Users, ExternalLink, FileCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 import { stats } from "../constants";
 
@@ -33,18 +35,19 @@ export function HeroSection() {
 
           {/* Sisi Kanan: Tombol Kunjungi */}
           <div className="flex-shrink-0 self-start sm:self-center">
-            <a
-              href="https://www.google.com/maps/place/KUA+Kec.+Karawang+Barat/@-6.3063436,107.3046829,20z/data=!4m6!3m5!1s0x2e6977c3a733af8f:0xf597a5a216080521!8m2!3d-6.3064892!4d107.3047657!16s%2Fg%2F1hm4cgwz6?entry=ttu&g_ep=EgoyMDI2MDYyMS4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-primary border border-white hover:bg-gray-50 rounded-full font-roboto font-semibold text-sm shadow-md transition-all tracking-wider"
-            >
-              <span>Kunjungi</span>
-              <ExternalLink
-                className="w-4 h-4 text-primary"
-                strokeWidth={2.5}
-              />
-            </a>
+            <Button asChild className="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-primary border border-white hover:bg-gray-50 hover:text-primary rounded-full font-roboto font-semibold text-sm shadow-md transition-all tracking-wider h-auto">
+              <a
+                href="https://www.google.com/maps/place/KUA+Kec.+Karawang+Barat/@-6.3063436,107.3046829,20z/data=!4m6!3m5!1s0x2e6977c3a733af8f:0xf597a5a216080521!8m2!3d-6.3064892!4d107.3047657!16s%2Fg%2F1hm4cgwz6?entry=ttu&g_ep=EgoyMDI2MDYyMS4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Kunjungi</span>
+                <ExternalLink
+                  className="w-4 h-4 text-primary"
+                  strokeWidth={2.5}
+                />
+              </a>
+            </Button>
           </div>
         </div>
       </div>
@@ -54,50 +57,54 @@ export function HeroSection() {
         <div className="container-custom">
           <div className="grid grid-cols-2 gap-2 sm:gap-6 max-w-2xl mx-auto">
             {/* Card 1: PERNIKAHAN */}
-            <div className="bg-white rounded-xl sm:rounded-2xl py-4 px-3 sm:p-6 lg:p-8 shadow-xl border border-gray-100/50 flex flex-row items-center justify-start gap-2 sm:gap-4">
-              <div className="p-2 sm:p-3 bg-primary/5 rounded-lg sm:rounded-2xl text-primary flex-shrink-0">
-                <Users
-                  className="w-5 h-5 sm:w-10 sm:h-10 text-primary"
-                  strokeWidth={2}
-                />
-              </div>
-              <div className="text-left">
-                <span className="block font-nunito font-extrabold text-[10px] sm:text-xs md:text-lg text-primary uppercase tracking-wider leading-tight">
-                  PERNIKAHAN
-                </span>
-                <div className="flex items-baseline justify-start gap-1 mt-0.5">
-                  <span className="font-roboto font-black text-lg sm:text-3xl md:text-4xl text-accent leading-none">
-                    {stats.marriagesThisMonth.toString().padStart(3, "0")}
-                  </span>
-                  <span className="text-[8px] sm:text-xs md:text-sm font-medium text-text-secondary">
-                    / Bln
-                  </span>
+            <Card className="p-0 bg-white rounded-xl sm:rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100/50">
+              <CardContent className="p-0 py-3 px-3 sm:p-5 lg:p-6 flex flex-row items-center justify-start gap-2 sm:gap-4">
+                <div className="p-2 sm:p-3 bg-primary/5 rounded-lg sm:rounded-2xl text-primary flex-shrink-0">
+                  <Users
+                    className="w-5 h-5 sm:w-10 sm:h-10 text-primary"
+                    strokeWidth={2}
+                  />
                 </div>
-              </div>
-            </div>
+                <div className="text-left">
+                  <span className="block font-nunito font-extrabold text-[10px] sm:text-xs md:text-lg text-primary uppercase tracking-wider leading-tight">
+                    PERNIKAHAN
+                  </span>
+                  <div className="flex items-baseline justify-start gap-1 mt-0.5">
+                    <span className="font-roboto font-black text-lg sm:text-3xl md:text-4xl text-accent leading-none">
+                      {stats.marriagesThisMonth.toString().padStart(3, "0")}
+                    </span>
+                    <span className="text-[8px] sm:text-xs md:text-sm font-medium text-text-secondary">
+                      / Bln
+                    </span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
             {/* Card 2: ISBAT NIKAH */}
-            <div className="bg-white rounded-xl sm:rounded-2xl py-4 px-3 sm:p-6 lg:p-10 shadow-xl border border-gray-100/50 flex flex-row items-center justify-start gap-2 sm:gap-4">
-              <div className="p-2 sm:p-3 bg-primary/5 rounded-lg sm:rounded-2xl text-primary flex-shrink-0">
-                <FileCheck
-                  className="w-5 h-5 sm:w-10 sm:h-10 text-primary"
-                  strokeWidth={2}
-                />
-              </div>
-              <div className="text-left">
-                <span className="block font-nunito font-extrabold text-[10px] sm:text-xs md:text-lg text-primary uppercase tracking-wider leading-tight">
-                  ISBAT NIKAH
-                </span>
-                <div className="flex items-baseline justify-start gap-1 mt-0.5">
-                  <span className="font-nunito font-black text-lg sm:text-3xl md:text-4xl text-accent leading-none">
-                    {stats.isbatsThisMonth.toString().padStart(2, "0")}
-                  </span>
-                  <span className="text-[8px] sm:text-xs md:text-sm font-medium text-text-secondary">
-                    / Bln
-                  </span>
+            <Card className="p-0 bg-white rounded-xl sm:rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100/50">
+              <CardContent className="p-0 py-3 px-3 sm:p-5 lg:p-6 flex flex-row items-center justify-start gap-2 sm:gap-4">
+                <div className="p-2 sm:p-3 bg-primary/5 rounded-lg sm:rounded-2xl text-primary flex-shrink-0">
+                  <FileCheck
+                    className="w-5 h-5 sm:w-10 sm:h-10 text-primary"
+                    strokeWidth={2}
+                  />
                 </div>
-              </div>
-            </div>
+                <div className="text-left">
+                  <span className="block font-nunito font-extrabold text-[10px] sm:text-xs md:text-lg text-primary uppercase tracking-wider leading-tight">
+                    ISBAT NIKAH
+                  </span>
+                  <div className="flex items-baseline justify-start gap-1 mt-0.5">
+                    <span className="font-nunito font-black text-lg sm:text-3xl md:text-4xl text-accent leading-none">
+                      {stats.isbatsThisMonth.toString().padStart(2, "0")}
+                    </span>
+                    <span className="text-[8px] sm:text-xs md:text-sm font-medium text-text-secondary">
+                      / Bln
+                    </span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
