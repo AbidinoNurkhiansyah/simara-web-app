@@ -4,6 +4,8 @@ import { Menu, X } from "lucide-react";
 import { DesktopNav } from "./DesktopNav";
 import { MobileNav } from "./MobileNav";
 
+import logoSimara from "@/assets/logo-simara.webp";
+
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -24,7 +26,7 @@ export const Navbar = () => {
             <div className="flex items-center gap-3 group">
               <div className="flex items-center justify-center w-11 h-11 rounded-full bg-white text-primary shadow-md shadow-black/10 overflow-hidden">
                 <img
-                  src="/images/logo-simara.webp"
+                  src={logoSimara}
                   alt="Logo Simara"
                   className="w-full h-full object-contain"
                 />

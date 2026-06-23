@@ -1,6 +1,10 @@
 import { Compass, Users, School, Handshake } from "lucide-react";
 import type { Service } from '../types';
 
+import tempatIbadahImg from "@/assets/tempat-ibadah.webp";
+import wakafImg from "@/assets/wakaf.webp";
+import madrasahImg from "@/assets/madrasah.webp";
+
 export const services: Service[] = [
   {
     title: "Suscatin",
@@ -17,7 +21,7 @@ export const services: Service[] = [
       "List data tempat atau fasilitas Keagamaan antar umat beragama di Kecamatan Karawang Barat",
     path: "/layanan/tempat-ibadah",
     icon: Compass,
-    image: "/images/tempat-ibadah.webp",
+    image: tempatIbadahImg,
   },
   {
     title: "Waqaf",
@@ -25,7 +29,7 @@ export const services: Service[] = [
       "konsep dalam Islam di mana seseorang menyerahkan harta benda untuk tujuan amal secara permanen",
     path: "/layanan/wakaf",
     icon: Handshake,
-    image: "/images/wakaf.webp",
+    image: wakafImg,
   },
   {
     title: "Madrasah",
@@ -33,6 +37,6 @@ export const services: Service[] = [
       "List data sekolah agama islam dari berbagai tingkatan di Kecamatan Karawang Barat",
     path: "/layanan/madrasah",
     icon: School,
-    image: "/images/madrasah.webp",
+    image: madrasahImg,
   },
 ];

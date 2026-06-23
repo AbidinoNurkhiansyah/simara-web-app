@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 import { stats } from "../constants";
+import bannerImg from "@/assets/banner.webp";
 
 export function HeroSection() {
   return (
@@ -10,7 +11,7 @@ export function HeroSection() {
       {/* Background Banner Full-Bleed (Mentok Kanan-Kiri & Terlihat Semua) */}
       <div className="absolute inset-0 w-full h-full z-0">
         <img
-          src="/images/banner.webp"
+          src={bannerImg}
           alt="KUA PUSAKA Karawang Barat"
           className="w-full h-full object-cover"
         />

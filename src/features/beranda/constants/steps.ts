@@ -1,10 +1,19 @@
 import type { Step } from '../types';
 
+import step1Img from "@/assets/step-pernikahan/step-1.webp";
+import step2Img from "@/assets/step-pernikahan/step-2.webp";
+import step3Img from "@/assets/step-pernikahan/step-3.webp";
+import step4Img from "@/assets/step-pernikahan/step-4.webp";
+import step5Img from "@/assets/step-pernikahan/step-5.webp";
+import step6Img from "@/assets/step-pernikahan/step-6.webp";
+import step7Img from "@/assets/step-pernikahan/step-7.webp";
+import step8Img from "@/assets/step-pernikahan/step-8.webp";
+
 export const steps: Step[] = [
   {
     id: 1,
     title: "Siapkan Berkas Persyaratan",
-    image: "/images/step-pernikahan/step-1.webp",
+    image: step1Img,
     desc: [
       "Foto Copy KTP",
       "Foto Copy KTP Orang Tua",
@@ -22,7 +31,7 @@ export const steps: Step[] = [
   {
     id: 2,
     title: "Datang Ke Kelurahan/Desa",
-    image: "/images/step-pernikahan/step-2.webp",
+    image: step2Img,
     desc: [
       "Meminta Formulir N1,N2,N3,N4,N5,N6 & SKW",
       "Mengisi Formulir dan ditandatangani oleh Lurah/Kepala Desa",
@@ -31,7 +40,7 @@ export const steps: Step[] = [
   {
     id: 3,
     title: "Membawa Persyaratan ke KUA",
-    image: "/images/step-pernikahan/step-3.webp",
+    image: step3Img,
     desc: [
       "Membawa Semua Persyaratan dari Kelurahan/Desa",
       "Meminta  Billing Pembayaran untuk ke Kantor POS",
@@ -40,7 +49,7 @@ export const steps: Step[] = [
   {
     id: 4,
     title: "Membayar Billing Pembayaran",
-    image: "/images/step-pernikahan/step-4.webp",
+    image: step4Img,
     desc: [
       "Menyerahkan Billing Pembayaran dari KUA",
       "Menyetorkan biaya Nikah",
@@ -50,7 +59,7 @@ export const steps: Step[] = [
   {
     id: 5,
     title: "Mempersiapkan Kelengkapan Administrasi",
-    image: "/images/step-pernikahan/step-5.webp",
+    image: step5Img,
     desc: [
       "Menyerahkan Slip Setoran dari Kantor POS (Asli & 4 Rangkap Foto Copy)",
       "Menerima Surat untuk Penataran Calon Pengantin",
@@ -59,7 +68,7 @@ export const steps: Step[] = [
   {
     id: 6,
     title: "Penataran (Suscatin)",
-    image: "/images/step-pernikahan/step-6.webp",
+    image: step6Img,
     desc: [
       "Menerima Materi Bimbingan Kursus Calon Pengantin (Suscatin) dan Praktek Ijab Qobul.",
     ],
@@ -67,7 +76,7 @@ export const steps: Step[] = [
   {
     id: 7,
     title: "Prosesi Akad Nikah",
-    image: "/images/step-pernikahan/step-7.webp",
+    image: step7Img,
     desc: [
       "Menunggu dan Menghubungi Petugas KUA (Penghulu) pada saat pelaksanaan Akad Nikah.",
     ],
@@ -75,7 +84,7 @@ export const steps: Step[] = [
   {
     id: 8,
     title: "Penyerahan Buku Nikah",
-    image: "/images/step-pernikahan/step-8.webp",
+    image: step8Img,
     desc: [
       "Penyerahan Buku Nikah kepada pengantin sebagai tanda bukti bahwa perkawinan yang telah dilaksanakan sah secara hukum negara.",
     ],

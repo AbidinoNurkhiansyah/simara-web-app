@@ -1,4 +1,7 @@
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import kuaLogo from "@/assets/KUA.webp";
 
 const InstagramIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg
@@ -65,7 +68,7 @@ export const Footer = () => {
             <div className="flex items-center gap-3">
               <div className="flex items-center">
                 <img
-                  src="/images/KUA.webp"
+                  src={kuaLogo}
                   alt="Logo KUA"
                   className="h-10 w-auto object-contain"
                 />
@@ -85,24 +88,21 @@ export const Footer = () => {
               prima, kredibel, dan modern bagi seluruh masyarakat.
             </p>
             <div className="flex items-center gap-3 pt-2">
-              <a
-                href="https://www.instagram.com/kua_karawangbarat/"
-                className="p-2 rounded-lg bg-white/10 hover:bg-accent hover:text-primary transition-all duration-300"
-              >
-                <InstagramIcon className="w-5 h-5" />
-              </a>
-              <a
-                href="http://facebook.com/kemenagjabar"
-                className="p-2 rounded-lg bg-white/10 hover:bg-accent hover:text-primary transition-all duration-300"
-              >
-                <FacebookIcon className="w-5 h-5" />
-              </a>
-              <a
-                href="https://x.com/KemenagJabar"
-                className="p-2 rounded-lg bg-white/10 hover:bg-accent hover:text-primary transition-all duration-300"
-              >
-                <TwitterIcon className="w-5 h-5" />
-              </a>
+              <Button asChild variant="ghost" size="icon" className="p-2 w-auto h-auto rounded-lg bg-white/10 hover:bg-accent hover:text-primary transition-all duration-300">
+                <a href="https://www.instagram.com/kua_karawangbarat/">
+                  <InstagramIcon className="w-5 h-5" />
+                </a>
+              </Button>
+              <Button asChild variant="ghost" size="icon" className="p-2 w-auto h-auto rounded-lg bg-white/10 hover:bg-accent hover:text-primary transition-all duration-300">
+                <a href="http://facebook.com/kemenagjabar">
+                  <FacebookIcon className="w-5 h-5" />
+                </a>
+              </Button>
+              <Button asChild variant="ghost" size="icon" className="p-2 w-auto h-auto rounded-lg bg-white/10 hover:bg-accent hover:text-primary transition-all duration-300">
+                <a href="https://x.com/KemenagJabar">
+                  <TwitterIcon className="w-5 h-5" />
+                </a>
+              </Button>
             </div>
           </div>
 
@@ -157,7 +157,8 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-roboto text-white/60">
+        <Separator className="mt-12 bg-white/10" />
+        <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-roboto text-white/60">
           <p className="text-center md:text-left">
             © {currentYear} KUA PUSAKA Kecamatan Karawang Barat. Hak Cipta
             Dilindungi.
