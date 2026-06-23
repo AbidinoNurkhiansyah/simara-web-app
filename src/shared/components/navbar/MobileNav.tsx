@@ -15,7 +15,7 @@ export const MobileNav = ({ isOpen, isActive }: MobileNavProps) => {
       <div className="px-2 pt-2 pb-4 space-y-1">
         <Link
           to="/"
-          className={`block px-4 py-2.5 rounded-xl font-nunito font-bold text-base ${
+          className={`block px-4 py-2.5 rounded-xl font-roboto font-bold text-base ${
             isActive("/")
               ? "text-accent bg-white/10"
               : "text-white/90 hover:bg-white/5"
@@ -26,7 +26,7 @@ export const MobileNav = ({ isOpen, isActive }: MobileNavProps) => {
 
         <Link
           to="/profil"
-          className={`block px-4 py-2.5 rounded-xl font-nunito font-bold text-base ${
+          className={`block px-4 py-2.5 rounded-xl font-roboto font-bold text-base ${
             isActive("/profil")
               ? "text-accent bg-white/10"
               : "text-white/90 hover:bg-white/5"
@@ -37,7 +37,7 @@ export const MobileNav = ({ isOpen, isActive }: MobileNavProps) => {
 
         {/* Layanan Submenu for Mobile */}
         <div className="py-1">
-          <span className="block px-4 py-1.5 font-nunito font-extrabold text-xs uppercase tracking-widest text-white/50">
+          <span className="block px-4 py-1.5 font-roboto font-extrabold text-xs uppercase tracking-widest text-white/50">
             Layanan KUA
           </span>
           <div className="pl-4 grid gap-1 mt-1">
@@ -45,7 +45,7 @@ export const MobileNav = ({ isOpen, isActive }: MobileNavProps) => {
               <Link
                 key={item.path}
                 to={item.path}
-                className="flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-nunito font-semibold text-white/90 hover:bg-white/5"
+                className="flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-roboto font-semibold text-white/90 hover:bg-white/5"
               >
                 <item.icon className="w-4 h-4 text-accent" />
                 {item.name}
@@ -56,7 +56,7 @@ export const MobileNav = ({ isOpen, isActive }: MobileNavProps) => {
 
         {/* Edukasi Submenu for Mobile */}
         <div className="py-1">
-          <span className="block px-4 py-1.5 font-nunito font-extrabold text-xs uppercase tracking-widest text-white/50">
+          <span className="block px-4 py-1.5 font-roboto font-extrabold text-xs uppercase tracking-widest text-white/50">
             Pusat Edukasi
           </span>
           <div className="pl-4 grid gap-1 mt-1">
@@ -64,7 +64,7 @@ export const MobileNav = ({ isOpen, isActive }: MobileNavProps) => {
               <Link
                 key={item.path}
                 to={item.path}
-                className="flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-nunito font-semibold text-white/90 hover:bg-white/5"
+                className="flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-roboto font-semibold text-white/90 hover:bg-white/5"
               >
                 <item.icon className="w-4 h-4 text-accent" />
                 {item.name}
@@ -75,7 +75,7 @@ export const MobileNav = ({ isOpen, isActive }: MobileNavProps) => {
 
         <Link
           to="/program"
-          className={`block px-4 py-2.5 rounded-xl font-nunito font-bold text-base ${
+          className={`block px-4 py-2.5 rounded-xl font-roboto font-bold text-base ${
             isActive("/program")
               ? "text-accent bg-white/10"
               : "text-white/90 hover:bg-white/5"
@@ -88,7 +88,7 @@ export const MobileNav = ({ isOpen, isActive }: MobileNavProps) => {
           href="https://simkah4.kemenag.go.id"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 flex items-center justify-center gap-2 w-full px-4 py-3 bg-accent text-primary font-nunito font-bold rounded-xl hover:bg-white transition-colors"
+          className="mt-4 flex items-center justify-center gap-2 w-full px-4 py-3 bg-accent text-primary font-roboto font-bold rounded-xl hover:bg-white transition-colors"
         >
           <UserCircle className="w-5 h-5" />
           Daftar Nikah

@@ -26,10 +26,10 @@ export const NavDropdown = ({
   return (
     <div className="relative group">
       <button
-        className={`relative flex items-center gap-1 px-3 py-2 font-nunito font-semibold text-sm transition-all after:absolute after:bottom-1 after:left-3 after:right-3 after:h-[2px] after:bg-accent after:transition-transform after:duration-300 after:origin-left ${
+        className={`relative flex items-center gap-1 px-3 py-2 font-roboto font-regular text-sm transition-all after:absolute after:bottom-1 after:left-3 after:right-3 after:h-[2px] after:bg-accent after:transition-transform after:duration-300 after:origin-left ${
           pathname.startsWith(basePath)
-            ? "text-accent after:scale-x-100"
-            : "text-white/80 group-hover:text-accent after:scale-x-0 group-hover:after:scale-x-100"
+            ? "text-accent after:scale-x-100 font-semibold"
+            : "text-white group-hover:text-accent after:scale-x-0 group-hover:after:scale-x-100"
         }`}
       >
         {label}
@@ -50,7 +50,7 @@ export const NavDropdown = ({
                   <item.icon className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-nunito font-bold text-[13px] text-white group-hover/item:text-accent transition-colors leading-tight">
+                  <h4 className="font-roboto font-regular text-[13px] text-white group-hover/item:text-accent transition-colors leading-tight">
                     {item.name}
                   </h4>
                   <p className="font-roboto text-[11px] text-white/60 mt-1 leading-tight">

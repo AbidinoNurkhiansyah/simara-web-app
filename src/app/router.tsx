@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Navbar } from '../shared/components/navbar/Navbar'
 import { Footer } from '../shared/components/Footer'
+import { FloatingWhatsApp } from '../shared/components/FloatingWhatsApp'
 
 // Lazy loaded page components
 const Beranda = lazy(() => import('../features/beranda/pages/Beranda'))
@@ -49,6 +50,7 @@ export const AppRouter = () => {
         </Suspense>
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   )
 }

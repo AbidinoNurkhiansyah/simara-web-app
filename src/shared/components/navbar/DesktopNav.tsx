@@ -12,10 +12,10 @@ export const DesktopNav = ({ isActive, pathname }: DesktopNavProps) => {
     <div className="hidden md:flex items-center space-x-1 lg:space-x-4">
       <Link
         to="/"
-        className={`relative px-3 py-2 font-nunito font-semibold text-sm transition-all after:absolute after:bottom-1 after:left-3 after:right-3 after:h-[2px] after:bg-accent after:transition-transform after:duration-300 after:origin-left ${
+        className={`relative px-3 py-2 font-roboto font-reguler text-sm transition-all after:absolute after:bottom-1 after:left-3 after:right-3 after:h-[2px] after:bg-accent after:transition-transform after:duration-300 after:origin-left ${
           isActive("/")
-            ? "text-accent after:scale-x-100"
-            : "text-white/80 hover:text-accent after:scale-x-0 hover:after:scale-x-100"
+            ? "text-accent after:scale-x-100 font-semibold"
+            : "text-white hover:text-accent after:scale-x-0 hover:after:scale-x-100"
         }`}
       >
         Beranda
@@ -23,10 +23,10 @@ export const DesktopNav = ({ isActive, pathname }: DesktopNavProps) => {
 
       <Link
         to="/profil"
-        className={`relative px-3 py-2 font-nunito font-semibold text-sm transition-all after:absolute after:bottom-1 after:left-3 after:right-3 after:h-[2px] after:bg-accent after:transition-transform after:duration-300 after:origin-left ${
+        className={`relative px-3 py-2 font-roboto font-reguler text-sm transition-all after:absolute after:bottom-1 after:left-3 after:right-3 after:h-[2px] after:bg-accent after:transition-transform after:duration-300 after:origin-left ${
           isActive("/profil")
             ? "text-accent after:scale-x-100"
-            : "text-white/80 hover:text-accent after:scale-x-0 hover:after:scale-x-100"
+            : "text-white hover:text-accent after:scale-x-0 hover:after:scale-x-100"
         }`}
       >
         Profil
@@ -50,10 +50,10 @@ export const DesktopNav = ({ isActive, pathname }: DesktopNavProps) => {
 
       <Link
         to="/program"
-        className={`relative px-3 py-2 font-nunito font-semibold text-sm transition-all after:absolute after:bottom-1 after:left-3 after:right-3 after:h-[2px] after:bg-accent after:transition-transform after:duration-300 after:origin-left ${
+        className={`relative px-3 py-2 font-roboto font-reguler text-sm transition-all after:absolute after:bottom-1 after:left-3 after:right-3 after:h-[2px] after:bg-accent after:transition-transform after:duration-300 after:origin-left ${
           isActive("/program")
             ? "text-accent after:scale-x-100"
-            : "text-white/80 hover:text-accent after:scale-x-0 hover:after:scale-x-100"
+            : "text-white hover:text-accent after:scale-x-0 hover:after:scale-x-100"
         }`}
       >
         Program
