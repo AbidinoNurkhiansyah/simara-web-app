@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { NavDropdown } from "./NavDropdown";
-import { layananItems, edukasiItems } from "../../constants/navigation";
+import { layananItems, edukasiItems } from "../../config/constants/navigation";
 
 interface DesktopNavProps {
   isActive: (path: string) => boolean;

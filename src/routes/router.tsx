@@ -1,18 +1,18 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { Navbar } from '../shared/components/navbar/Navbar'
-import { Footer } from '../shared/components/Footer'
-import { FloatingWhatsApp } from '../shared/components/FloatingWhatsApp'
+import { Navbar } from '../components/navbar/Navbar'
+import { Footer } from '../components/Footer'
+import { FloatingWhatsApp } from '../components/FloatingWhatsApp'
 
 // Lazy loaded page components
-const Beranda = lazy(() => import('../features/beranda/pages/Beranda'))
-const Profil = lazy(() => import('../features/profil/pages/Profil'))
-const Edukasi = lazy(() => import('../features/edukasi/pages/Edukasi'))
-const Program = lazy(() => import('../features/program/pages/Program'))
-const Suscatin = lazy(() => import('../features/layanan/pages/Suscatin'))
-const TempatIbadah = lazy(() => import('../features/layanan/pages/TempatIbadah'))
-const Wakaf = lazy(() => import('../features/layanan/pages/Wakaf'))
-const Madrasah = lazy(() => import('../features/layanan/pages/Madrasah'))
+const Beranda = lazy(() => import('../pages/Beranda'))
+const Profil = lazy(() => import('../pages/Profil'))
+const Edukasi = lazy(() => import('../pages/Edukasi'))
+const Program = lazy(() => import('../pages/Program'))
+const Suscatin = lazy(() => import('../pages/Suscatin'))
+const TempatIbadah = lazy(() => import('../pages/TempatIbadah'))
+const Wakaf = lazy(() => import('../pages/Wakaf'))
+const Madrasah = lazy(() => import('../pages/Madrasah'))
 
 // Loading fallback component
 const LoadingSpinner = () => (

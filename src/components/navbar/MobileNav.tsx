@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { layananItems, edukasiItems } from "../../constants/navigation";
+import { layananItems, edukasiItems } from "../../config/constants/navigation";
 import { UserCircle } from "lucide-react";
 
 interface MobileNavProps {
