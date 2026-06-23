@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { Navbar } from '../shared/components/Navbar'
+import { Navbar } from '../shared/components/navbar/Navbar'
 import { Footer } from '../shared/components/Footer'
 
 // Lazy loaded page components
