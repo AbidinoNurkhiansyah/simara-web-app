@@ -15,7 +15,7 @@ export function TempatIbadahListSection({
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 12; // 3 rows of 4 cards
   const sectionRef = useRef<HTMLElement>(null);
-  const isFirstRender = useRef(true);
+  const prevPage = useRef(currentPage);
 
   useEffect(() => {
     // Reset page to 1 whenever data (search/filter results) changes
@@ -23,16 +23,16 @@ export function TempatIbadahListSection({
   }, [data]);
 
   useEffect(() => {
-    // Don't scroll on the first render
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-    // Smooth scroll to the top of the section when page changes
-    const offset = 80; // Account for any fixed headers if present
-    if (sectionRef.current) {
-      const top = sectionRef.current.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: "smooth" });
+    // Only scroll if the page actually changed (prevents scrolling on Strict Mode remounts)
+    if (prevPage.current !== currentPage) {
+      prevPage.current = currentPage;
+      
+      // Smooth scroll to the top of the section when page changes
+      const offset = 80; // Account for any fixed headers if present
+      if (sectionRef.current) {
+        const top = sectionRef.current.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
     }
   }, [currentPage]);
 
