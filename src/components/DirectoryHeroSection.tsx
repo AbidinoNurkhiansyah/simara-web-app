@@ -43,7 +43,7 @@ export function DirectoryHeroSection({
       <div className="container-custom relative z-10">
         <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
           {/* Left Content */}
-          <div className="lg:w-[45%] space-y-8 relative z-10">
+          <div className="w-full lg:w-[45%] space-y-8 relative z-10">
             <h1 className="text-xl md:text-2xl lg:text-3xl font-extrabold text-[#305335] leading-[1.2] tracking-tight drop-shadow-sm">
               {title}
             </h1>
@@ -61,7 +61,7 @@ export function DirectoryHeroSection({
             </div>
 
             {/* Categories */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap justify-between md:justify-start gap-2">
               {categories.map((cat) => (
                 <Button
                   key={cat}
@@ -71,7 +71,7 @@ export function DirectoryHeroSection({
                   className={`rounded-full font-nunito font-bold transition-all duration-300 ${
                     selectedCategory === cat
                       ? "bg-[#305335] hover:bg-[#203a24] text-white shadow-md transform hover:-translate-y-0.5"
-                      : "bg-[#e9ecef] text-[#4a5568] hover:bg-gray-200"
+                      : "bg-[#e9ecef] text-[#4a5568] hover:bg-gray-200 cursor-pointer"
                   }`}
                 >
                   {cat}

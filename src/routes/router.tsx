@@ -15,6 +15,8 @@ import TempatIbadahDetail from '../pages/TempatIbadahDetail'
 import Wakaf from '../pages/Wakaf'
 import Madrasah from '../pages/Madrasah'
 
+import MadrasahDetail from '../pages/MadrasahDetail'
+
 
 
 const ScrollToTop = () => {
@@ -43,6 +45,7 @@ export const AppRouter = () => {
           <Route path="/layanan/tempat-ibadah/:id" element={<TempatIbadahDetail />} />
           <Route path="/layanan/wakaf" element={<Wakaf />} />
           <Route path="/layanan/madrasah" element={<Madrasah />} />
+          <Route path="/layanan/madrasah/:id" element={<MadrasahDetail />} />
           <Route path="*" element={
             <div className="container-custom py-20 text-center">
               <h1 className="text-4xl font-extrabold text-primary mb-4">404</h1>
