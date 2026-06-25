@@ -1,92 +1,166 @@
-import { FileText, CheckCircle2, HelpCircle } from 'lucide-react'
+import { PageHero } from "@/components/PageHero";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 
 export default function Wakaf() {
   const requirements = [
-    'Surat Pengantar dari RT/RW & Kepala Desa/Lurah setempat',
-    'Sertifikat Hak Milik (SHM) asli atau bukti kepemilikan tanah sah',
-    'Fotokopi KTP Wakif (Pemberi Wakaf) & KK',
-    'Fotokopi KTP Nazhir (Pengelola Wakaf) minimal 3 orang',
-    'Surat Pernyataan bahwa tanah tidak dalam sengketa/jaminan bank',
-    'Surat Keterangan Kematian (jika wakif telah meninggal dan diwakili ahli waris)'
-  ]
-
-  const alurWakaf = [
-    { step: 1, title: 'Permohonan ke KUA', desc: 'Wakif dan Nazhir mengajukan permohonan pendaftaran ke KUA dengan berkas lengkap.' },
-    { step: 2, title: 'Pemeriksaan Lapangan', desc: 'Petugas KUA bersama penyuluh mengukur dan memverifikasi batas-batas tanah di lokasi.' },
-    { step: 3, title: 'Ikrar Wakaf (AIW)', desc: 'Wakif mengucapkan Ikrar Wakaf di hadapan Kepala KUA selaku PPAIW (Pejabat Pembuat Akta Ikrar Wakaf) dan disaksikan saksi.' },
-    { step: 4, title: 'Penandatanganan Akta', desc: 'Penandatanganan dokumen AIW/APAIW oleh Wakif, Nazhir, Saksi, dan Kepala KUA.' },
-    { step: 5, title: 'Pengajuan ke BPN', desc: 'KUA memproses berkas AIW untuk diajukan ke BPN guna menerbitkan Sertifikat Tanah Wakaf.' }
-  ]
+    {
+      title: "Surat permohonan pendaftaran tanah wakaf",
+      image: "/src/assets/form-wakaf/1.webp",
+    },
+    {
+      title: "Surat Keterangan Kepala Kelurahan tentang Perwakafan Tanah Milik",
+      image: "/src/assets/form-wakaf/2.webp",
+    },
+    {
+      title: "Surat Keterangan & Pernyataan Ahli Waris",
+      image: "/src/assets/form-wakaf/3.webp",
+    },
+    {
+      title: "Surat Pernyataan Kesediaan Menjadi Nazhir",
+      image: "/src/assets/form-wakaf/4.webp",
+    },
+    {
+      title: "Surat Bersedia di Audit",
+      image: "/src/assets/form-wakaf/5.webp",
+    },
+    {
+      title:
+        "Identitas Berupa fotocopy KTP wakif, nazhir, dan saksi dalam rangkaian administrasi wakaf.",
+      image: "/src/assets/form-wakaf/6.webp",
+    },
+    {
+      title: "Surat Pernyataan Status Tanah Tidak Sengketa",
+      image: "/src/assets/form-wakaf/7.webp",
+    },
+    {
+      title: "Daftar Hadir Musyawarah Pembentukan Nazhir",
+      image: "/src/assets/form-wakaf/8.webp",
+    },
+  ];
 
   return (
-    <div className="pb-24 space-y-16">
-      {/* Header */}
-      <section className="bg-gradient-to-br from-amber-500/10 to-transparent pt-16 pb-20 border-b border-amber-100">
-        <div className="container-custom text-center space-y-4">
-          <span className="text-amber-600 font-bold text-xs uppercase tracking-widest bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-200/50">
-            Administrasi Wakaf
-          </span>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight">
-            Layanan Pengamanan Aset Wakaf
-          </h1>
-          <p className="text-text-secondary text-sm md:text-base max-w-xl mx-auto leading-relaxed">
-            Panduan lengkap legalitas tanah wakaf tempat ibadah (masjid/musala) dan lembaga pendidikan Islam agar aman berkepastian hukum.
+    <div className="pb-24 bg-gray-50">
+      <PageHero
+        badge="Edukasi"
+        title={<span className="text-accent text-6xl">Perwakaf-an</span>}
+        imageSrc="/src/assets/wakaf-hero.webp"
+        imageAlt="Edukasi Wakaf"
+        imageClassName="w-full h-full object-cover object-[80%_top] md:object-top"
+      />
+
+      {/* Main Content */}
+      <section className="container-custom">
+        <div className="max-w-5xl mt-10 lg:mt-16 mx-auto space-y-12">
+          {/* Intro */}
+          <p className="text-text-secondary text-sm md:text-base leading-relaxed indent-8 text-justify">
+            Wakaf adalah salah satu bentuk amal jariah dalam Islam yang
+            melibatkan pengalihan kepemilikan suatu aset (harta benda) untuk
+            digunakan demi kepentingan umum atau ibadah, dengan tujuan
+            memperoleh ridha Allah. Aset yang diwakafkan tidak boleh dijual,
+            diwariskan, atau dialihkan kepemilikannya, melainkan harus tetap
+            terjaga agar manfaatnya dapat berlangsung secara berkelanjutan.
           </p>
-        </div>
-      </section>
 
-      {/* Main Info */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 text-left">
-          {/* Sisi Kiri: Alur Pendaftaran */}
-          <div className="lg:col-span-7 space-y-8">
-            <div className="space-y-4">
-              <h2 className="text-2xl font-extrabold text-text-primary">Alur Sertifikasi Tanah Wakaf</h2>
-              <p className="font-roboto text-text-secondary text-sm md:text-base leading-relaxed">
-                PPAIW (Pejabat Pembuat Akta Ikrar Wakaf) di KUA Karawang Barat memfasilitasi pembuatan **Akta Ikrar Wakaf (AIW)** secara gratis untuk mengamankan tempat ibadah dan sarana umat lainnya dari potensi sengketa hukum di masa depan.
-              </p>
-            </div>
+          {/* Unsur-unsur */}
+          <div className="space-y-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-primary">
+              1. Unsur-unsur Wakaf
+            </h2>
+            <ul className="space-y-3 text-text-secondary text-sm md:text-base leading-relaxed list-disc pl-6">
+              <li>
+                <span className="font-bold text-text-primary">Wakif :</span>{" "}
+                Orang yang memberikan harta wakaf.
+              </li>
+              <li>
+                <span className="font-bold text-text-primary">
+                  Mauquf (Harta Wakaf) :
+                </span>{" "}
+                Harta yang diwakafkan, harus berupa harta yang memiliki nilai
+                dan bersifat kekal, seperti tanah, bangunan, uang (wakaf tunai),
+                atau aset lain yang tidak habis sekali pakai.
+              </li>
+              <li>
+                <span className="font-bold text-text-primary">
+                  Mauquf ‘Alaih :
+                </span>{" "}
+                Pihak atau institusi yang menerima manfaat dari wakaf, misalnya
+                masjid, sekolah, rumah sakit, atau masyarakat umum
+              </li>
+              <li>
+                <span className="font-bold text-text-primary">Nazhir :</span>{" "}
+                Pengelola atau pihak yang ditunjuk untuk menjaga, mengelola, dan
+                mendistribusikan hasil dari harta wakaf sesuai tujuan wakaf.
+              </li>
+            </ul>
+          </div>
 
-            <div className="space-y-6">
-              {alurWakaf.map((al, idx) => (
-                <div key={idx} className="flex gap-4 p-5 rounded-2xl bg-white border border-gray-150 shadow-sm">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-nunito font-extrabold text-base">
-                    {al.step}
+          {/* Jenis */}
+          <div className="space-y-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+              2. Jenis Wakaf
+            </h2>
+            <ul className="space-y-4 text-gray-700 text-lg list-disc pl-6">
+              <li>
+                <span className="font-bold">Wakaf Ahli (Keluarga) :</span>{" "}
+                Ditujukan untuk keluarga atau kerabat dekat wakif. Setelah tidak
+                ada lagi penerima manfaat dalam keluarga, aset wakaf dialihkan
+                untuk kepentingan umum.
+              </li>
+              <li>
+                <span className="font-bold">Wakaf Khairi (Umum) :</span>{" "}
+                Ditujukan sepenuhnya untuk kepentingan umum atau amal, seperti
+                pembangunan fasilitas ibadah, pendidikan, kesehatan, atau
+                lainnya.
+              </li>
+            </ul>
+          </div>
+
+          {/* Berkas Persyaratan */}
+          <div className="space-y-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+              3. Berkas Persyaratan
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {requirements.map((req, idx) => (
+                <div
+                  key={idx}
+                  className={`flex flex-col h-full gap-4 ${
+                    idx === 6 ? "md:col-span-2" : ""
+                  }`}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 w-2 h-2 rounded-full bg-gray-500 flex-shrink-0" />
+                    <h3 className="font-semibold text-gray-700 text-lg">
+                      {req.title}
+                    </h3>
                   </div>
-                  <div className="space-y-1">
-                    <h4 className="font-nunito font-bold text-base text-text-primary">{al.title}</h4>
-                    <p className="font-roboto text-xs sm:text-sm text-text-secondary leading-relaxed">{al.desc}</p>
+                  <div
+                    className={`mt-auto w-full ${
+                      idx === 6 ? "aspect-[3/2]" : "aspect-[3/4]"
+                    } bg-gray-100 border border-gray-200 rounded-lg flex items-center justify-center text-gray-400 overflow-hidden`}
+                  >
+                    <img
+                      src={req.image}
+                      alt={req.title}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Sisi Kanan: Syarat Pendaftaran */}
-          <div className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-xl space-y-6">
-            <h3 className="font-nunito font-extrabold text-lg text-primary border-b border-gray-100 pb-3 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-amber-600" />
-              Syarat Akta Ikrar Wakaf (AIW)
+          {/* Footer CTA */}
+          <div className="pt-12 pb-8 text-center border-t border-gray-100">
+            <h3 className="text-primary text-xl md:text-2xl font-bold leading-relaxed max-w-4xl mx-auto">
+              Belum paham atau ada yang ingin di tanyakan ?, silahkan bisa
+              hubungi kami untuk penjelasan lebih lanjutnya, Terima kasih ...
             </h3>
-            <ul className="space-y-3 font-roboto text-xs sm:text-sm text-text-secondary">
-              {requirements.map((req, idx) => (
-                <li key={idx} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span>{req}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="pt-4 p-4 rounded-2xl bg-amber-50 border border-amber-200/50 flex gap-3 text-left">
-              <HelpCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-              <div className="font-roboto text-xs text-amber-900 leading-relaxed">
-                <p className="font-bold">Butuh Bantuan Konsultasi?</p>
-                <p className="mt-0.5">Silakan datang langsung ke KUA Karawang Barat pada hari kerja atau hubungi penyuluh wakaf kami untuk pendampingan berkas gratis.</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
+
+      <FloatingWhatsApp />
     </div>
-  )
+  );
 }
