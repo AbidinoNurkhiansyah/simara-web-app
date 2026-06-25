@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { Landmark } from "lucide-react";
 import { DirectoryEmptyState } from "@/components/DirectoryEmptyState";
 import { DirectoryCard } from "@/components/DirectoryCard";
@@ -50,21 +51,22 @@ export function TempatIbadahListSection({
               className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500"
             >
               {currentData.map((place) => (
-                <DirectoryCard
-                  key={place.id}
-                  imageSrc={place.image}
-                  imageAlt={place.name}
-                  icon={
-                    <img
-                      src={place.icon}
-                      alt={place.type}
-                      className="w-4 h-4 sm:w-6 sm:h-6 object-contain"
-                    />
-                  }
-                  category={place.type}
-                  title={place.name}
-                  address={`${place.address}, Kel. ${place.kelurahan}, Kec. Karawang Barat, Karawang`}
-                />
+                <Link key={place.id} to={`/layanan/tempat-ibadah/${place.id}`} className="block h-full group/link">
+                  <DirectoryCard
+                    imageSrc={place.image}
+                    imageAlt={place.name}
+                    icon={
+                      <img
+                        src={place.icon}
+                        alt={place.type}
+                        className="w-4 h-4 sm:w-6 sm:h-6 object-contain"
+                      />
+                    }
+                    category={place.type}
+                    title={place.name}
+                    address={place.address}
+                  />
+                </Link>
               ))}
             </div>
 
