@@ -1,4 +1,4 @@
-export * from "./types";
+export type * from "./types";
 export * from "./constants";
 export * from "./components/ProgramHero";
 export * from "./components/ProgramIntro";

@@ -1,4 +1,4 @@
-import { ProgramItem } from "../types";
+import type { ProgramItem } from "../types";
 
 export const programsData: ProgramItem[] = Array(6)
   .fill({
