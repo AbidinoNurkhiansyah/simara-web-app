@@ -8,6 +8,9 @@ import { FloatingWhatsApp } from '../components/FloatingWhatsApp'
 import Beranda from '../pages/Beranda'
 import Profil from '../pages/Profil'
 import Edukasi from '../pages/Edukasi'
+import EdukasiPernikahan from '../pages/EdukasiPernikahan'
+import EdukasiPranikah from '../pages/EdukasiPranikah'
+import EdukasiPerwakafan from '../pages/EdukasiPerwakafan'
 import Program from '../pages/Program'
 import Suscatin from '../pages/Suscatin'
 import TempatIbadah from '../pages/TempatIbadah'
@@ -39,6 +42,9 @@ export const AppRouter = () => {
           <Route path="/" element={<Beranda />} />
           <Route path="/profil" element={<Profil />} />
           <Route path="/edukasi" element={<Edukasi />} />
+          <Route path="/edukasi/pernikahan" element={<EdukasiPernikahan />} />
+          <Route path="/edukasi/pranikah" element={<EdukasiPranikah />} />
+          <Route path="/edukasi/perwakafan" element={<EdukasiPerwakafan />} />
           <Route path="/program" element={<Program />} />
           <Route path="/layanan/suscatin" element={<Suscatin />} />
           <Route path="/layanan/tempat-ibadah" element={<TempatIbadah />} />
