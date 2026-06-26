@@ -11,6 +11,7 @@ import Edukasi from "../pages/Edukasi";
 import EdukasiPernikahan from "../pages/EdukasiPernikahan";
 import EdukasiPranikah from "../pages/EdukasiPranikah";
 import Program from "../pages/Program";
+import ProgramDetail from "../pages/ProgramDetail";
 import Suscatin from "../pages/Suscatin";
 import TempatIbadah from "../pages/TempatIbadah";
 import TempatIbadahDetail from "../pages/TempatIbadahDetail";
@@ -42,6 +43,7 @@ export const AppRouter = () => {
           <Route path="/edukasi/pernikahan" element={<EdukasiPernikahan />} />
           <Route path="/edukasi/pranikah" element={<EdukasiPranikah />} />
           <Route path="/program" element={<Program />} />
+          <Route path="/program/:id" element={<ProgramDetail />} />
           <Route path="/layanan/suscatin" element={<Suscatin />} />
           <Route path="/layanan/tempat-ibadah" element={<TempatIbadah />} />
           <Route

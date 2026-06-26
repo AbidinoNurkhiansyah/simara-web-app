@@ -3,11 +3,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 import { programs } from "../constants";
 
 export function ProgramKerjaSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -46,7 +48,7 @@ export function ProgramKerjaSection() {
           let transformClasses = "opacity-0 scale-75 z-0 pointer-events-none";
           if (offset === 0) {
             transformClasses =
-              "opacity-100 scale-100 z-30 translate-x-0 shadow-[0_20px_50px_rgb(0,0,0,0.12)]";
+              "opacity-100 scale-100 z-30 translate-x-0 shadow-[0_20px_50px_rgb(0,0,0,0.12)] cursor-pointer hover:scale-[1.02] transition-transform";
           } else if (offset === -1) {
             transformClasses =
               "opacity-60 scale-[0.85] md:scale-90 z-20 -translate-x-[90%] sm:-translate-x-[100%] cursor-pointer hover:opacity-80 shadow-[0_8px_30px_rgb(0,0,0,0.04)]";
@@ -60,7 +62,8 @@ export function ProgramKerjaSection() {
               key={idx}
               onClick={() => {
                 if (offset === -1) prevSlide();
-                if (offset === 1) nextSlide();
+                else if (offset === 1) nextSlide();
+                else if (offset === 0) navigate(`/program/${idx + 1}`);
               }}
               className={`p-0 gap-0 absolute w-[70%] sm:w-[60%] md:w-[50%] lg:w-[38%] h-full transition-all duration-700 ease-out rounded-3xl overflow-hidden bg-white border border-gray-100 flex flex-col ${transformClasses}`}
             >
