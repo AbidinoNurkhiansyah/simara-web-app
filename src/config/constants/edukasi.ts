@@ -1,8 +1,4 @@
-import {
-  Heart,
-  BookOpen,
-  GraduationCap,
-} from "lucide-react";
+import { Heart, GraduationCap } from "lucide-react";
 
 export const edukasiItems = [
   {
@@ -16,11 +12,5 @@ export const edukasiItems = [
     path: "/edukasi/pranikah",
     desc: "Persiapan mental dan spiritual sebelum menikah",
     icon: GraduationCap,
-  },
-  {
-    name: "Edukasi Perwakafan",
-    path: "/edukasi/perwakafan",
-    desc: "Tata cara dan literasi mengenai wakaf produktif",
-    icon: BookOpen,
   },
 ];
