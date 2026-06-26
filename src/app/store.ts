@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
+import authReducer from '../features/auth/authSlice'
 
 export const store = configureStore({
   reducer: {
-    // Slices will be added here for dashboard/admin functionality
-    app: (state = {}) => state, // Placeholder reducer to prevent Redux error
+    auth: authReducer,
   },
 })
 
