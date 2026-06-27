@@ -30,7 +30,7 @@ const ScrollToTop = () => {
   return null;
 };
 
-import { AdminLayout } from "../components/admin/AdminLayout";
+import { AdminLayout } from "../features/admin-layout";
 import { ProtectedRoute } from "../components/admin/ProtectedRoute";
 import AdminLogin from "../pages/admin/Login";
 import AdminDashboard from "../pages/admin/Dashboard";
