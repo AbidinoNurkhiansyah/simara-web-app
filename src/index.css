@@ -38,7 +38,12 @@
     margin: 0;
     @apply bg-background text-foreground;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-nunito);
     color: var(--color-text-primary);
   }
@@ -50,11 +55,33 @@
   }
 }
 
+/* ============================================
+   Sidebar Active Tab "Notch" Effect
+   ============================================ */
+.sidebar-nav-active {
+  position: relative;
+  background-color: #f4f6f8 !important;
+  border-top-left-radius: 20px !important;
+  border-bottom-left-radius: 20px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
 
+/* Concave notch ABOVE the active item */
+.sidebar-nav-active::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -20px;
+  width: 20px;
+  height: 20px;
+  background-color: #f4f6f8; /* same as content background */
+  border-bottom-left-radius: 20px; /* creates the inward concave curve */
+}
 
 @theme inline {
   --font-heading: var(--font-sans);
-  --font-sans: 'Geist Variable', sans-serif;
+  --font-sans: "Geist Variable", sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -96,24 +123,24 @@
 }
 
 :root {
-  --background: #F9F9F9;
-  --foreground: #3B3E51;
+  --background: #f9f9f9;
+  --foreground: #3b3e51;
   --card: #ffffff;
-  --card-foreground: #3B3E51;
+  --card-foreground: #3b3e51;
   --popover: #ffffff;
-  --popover-foreground: #3B3E51;
-  --primary: #31502C;
+  --popover-foreground: #3b3e51;
+  --primary: #31502c;
   --primary-foreground: #ffffff;
   --secondary: #e2ede1;
-  --secondary-foreground: #31502C;
+  --secondary-foreground: #31502c;
   --muted: #f1f5f9;
   --muted-foreground: #64748b;
-  --accent: #F3CD00;
-  --accent-foreground: #3B3E51;
+  --accent: #f3cd00;
+  --accent-foreground: #3b3e51;
   --destructive: #ef4444;
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #31502C;
+  --ring: #31502c;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -121,14 +148,14 @@
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
   --sidebar: #ffffff;
-  --sidebar-foreground: #3B3E51;
-  --sidebar-primary: #31502C;
+  --sidebar-foreground: #3b3e51;
+  --sidebar-primary: #31502c;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #e2ede1;
-  --sidebar-accent-foreground: #31502C;
+  --sidebar-accent-foreground: #31502c;
   --sidebar-border: #e2e8f0;
-  --sidebar-ring: #31502C;
-  
+  --sidebar-ring: #31502c;
+
   /* Brand-specific variables */
   --primary-hover: #233a20;
   --primary-light: #446f3d;
@@ -149,8 +176,8 @@
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
-  --accent: #F3CD00;
-  --accent-foreground: #3B3E51;
+  --accent: #f3cd00;
+  --accent-foreground: #3b3e51;
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
