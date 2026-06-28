@@ -58,8 +58,34 @@
 /* ============================================
    Sidebar Active Tab "Notch" Effect
    ============================================ */
-.sidebar-nav-active {
+.sidebar-nav-item {
   position: relative;
+}
+
+.sidebar-nav-item::before,
+.sidebar-nav-item::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Concave notch ABOVE the active item */
+.sidebar-nav-item::before {
+  top: -20px;
+  background: radial-gradient(circle at top left, transparent 20px, #f4f6f8 20px);
+}
+
+/* Concave notch BELOW the active item */
+.sidebar-nav-item::after {
+  bottom: -20px;
+  background: radial-gradient(circle at bottom left, transparent 20px, #f4f6f8 20px);
+}
+
+.sidebar-nav-active {
   background-color: #f4f6f8 !important;
   border-top-left-radius: 20px !important;
   border-bottom-left-radius: 20px !important;
@@ -67,16 +93,9 @@
   border-bottom-right-radius: 0 !important;
 }
 
-/* Concave notch ABOVE the active item */
-.sidebar-nav-active::before {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: -20px;
-  width: 20px;
-  height: 20px;
-  background-color: #f4f6f8; /* same as content background */
-  border-bottom-left-radius: 20px; /* creates the inward concave curve */
+.sidebar-nav-active::before,
+.sidebar-nav-active::after {
+  opacity: 1;
 }
 
 @theme inline {

@@ -58,7 +58,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Navigation */}
       <nav
-        className={`flex-1 mt-2 space-y-1 overflow-y-auto ${
+        className={`flex-1 py-6 space-y-1 overflow-y-auto ${
           isDesktopCollapsed ? "px-0" : "pl-3 pr-0"
         }`}
       >
@@ -69,7 +69,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               key={item.name}
               to={item.path}
               onClick={() => setSidebarOpen(false)}
-              className={`flex items-center transition-all duration-200 group ${
+              className={`sidebar-nav-item flex items-center hover:transition-colors hover:duration-200 group ${
                 isDesktopCollapsed
                   ? "justify-center w-12 h-12 mx-auto rounded-full mb-1 " +
                     (isActive
