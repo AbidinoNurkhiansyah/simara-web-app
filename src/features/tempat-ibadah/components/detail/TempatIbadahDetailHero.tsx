@@ -14,7 +14,7 @@ export function TempatIbadahDetailHero({ place }: Props) {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src={place.image ? (place.image.startsWith('http') || place.image.startsWith('/') ? place.image : `http://localhost:8000${place.image}`) : 'https://via.placeholder.com/800'}
+          src={place.image ? (place.image.startsWith('http') || place.image.startsWith('/') ? place.image : `http://localhost:8000${place.image}`) : 'https://placehold.co/800x400?text=No+Image'}
           alt={place.name}
           className="w-full h-full object-cover"
         />

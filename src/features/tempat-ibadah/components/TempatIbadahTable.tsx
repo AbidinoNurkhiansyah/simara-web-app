@@ -21,12 +21,24 @@ export const TempatIbadahTable: React.FC<Props> = ({
       <table className="w-full text-sm text-left border-separate border-spacing-0">
         <thead className="text-white font-medium">
           <tr>
-            <th className="px-4 py-2.5 bg-primary border-none rounded-tl-full rounded-bl-full whitespace-nowrap">No</th>
-            <th className="px-4 py-2.5 bg-primary border-none whitespace-nowrap">Foto</th>
-            <th className="px-4 py-2.5 bg-primary border-none whitespace-nowrap">Nama Tempat Ibadah</th>
-            <th className="px-4 py-2.5 bg-primary border-none text-center whitespace-nowrap">Tipe</th>
-            <th className="px-4 py-2.5 bg-primary border-none whitespace-nowrap">Lokasi</th>
-            <th className="px-4 py-2.5 bg-primary border-none text-center rounded-tr-full rounded-br-full whitespace-nowrap">Aksi</th>
+            <th className="px-4 py-2.5 bg-primary border-none rounded-tl-full rounded-bl-full whitespace-nowrap">
+              No
+            </th>
+            <th className="px-4 py-2.5 bg-primary border-none whitespace-nowrap">
+              Foto
+            </th>
+            <th className="px-4 py-2.5 bg-primary border-none whitespace-nowrap">
+              Nama Tempat Ibadah
+            </th>
+            <th className="px-4 py-2.5 bg-primary border-none text-center whitespace-nowrap">
+              Tipe
+            </th>
+            <th className="px-4 py-2.5 bg-primary border-none whitespace-nowrap">
+              Lokasi
+            </th>
+            <th className="px-4 py-2.5 bg-primary border-none text-center rounded-tr-full rounded-br-full whitespace-nowrap">
+              Aksi
+            </th>
           </tr>
         </thead>
         <tbody className="[&>tr:not(:last-child)>td]:border-b [&>tr:not(:last-child)>td]:border-gray-100">
@@ -68,12 +80,17 @@ export const TempatIbadahTable: React.FC<Props> = ({
                 <td className="px-4 py-2.5">{index + 1}</td>
                 <td className="px-4 py-2.5">
                   {item.image && (
-                    <img 
-                      src={item.image.startsWith('http') ? item.image : `http://localhost:8000${item.image.startsWith('/') ? '' : '/'}${item.image}`}
-                      alt={item.name} 
+                    <img
+                      src={
+                        item.image.startsWith("http")
+                          ? item.image
+                          : `http://localhost:8000${item.image.startsWith("/") ? "" : "/"}${item.image}`
+                      }
+                      alt={item.name}
                       className="w-16 h-12 object-cover rounded shadow-sm"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = 'https://via.placeholder.com/150';
+                        (e.target as HTMLImageElement).src =
+                          "https://placehold.co/150x150?text=No+Image";
                       }}
                     />
                   )}
@@ -84,12 +101,15 @@ export const TempatIbadahTable: React.FC<Props> = ({
                 <td className="px-4 py-2.5 text-center">
                   <Badge
                     variant="outline"
-                    className="bg-blue-50 text-blue-700 border-blue-200"
+                    className="bg-primary/10 text-primary border-primary/20"
                   >
                     {item.type}
                   </Badge>
                 </td>
-                <td className="px-4 py-2.5 text-gray-600 max-w-[200px] truncate" title={item.address}>
+                <td
+                  className="px-4 py-2.5 text-gray-600 max-w-[200px] truncate"
+                  title={item.address}
+                >
                   {item.address}
                 </td>
                 <td className="px-4 py-2.5">

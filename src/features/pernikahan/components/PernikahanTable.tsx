@@ -21,12 +21,24 @@ export const PernikahanTable: React.FC<Props> = ({
       <table className="w-full text-sm text-left border-separate border-spacing-0">
         <thead className="text-white font-medium">
           <tr>
-            <th className="px-4 py-2.5 bg-primary border-none rounded-tl-full rounded-bl-full whitespace-nowrap">No</th>
-            <th className="px-4 py-2.5 bg-primary border-none whitespace-nowrap">Bulan</th>
-            <th className="px-4 py-2.5 bg-primary border-none whitespace-nowrap">Tahun</th>
-            <th className="px-4 py-2.5 bg-primary border-none text-center whitespace-nowrap">Pernikahan</th>
-            <th className="px-4 py-2.5 bg-primary border-none text-center whitespace-nowrap">Isbat Nikah</th>
-            <th className="px-4 py-2.5 bg-primary border-none text-center rounded-tr-full rounded-br-full whitespace-nowrap">Aksi</th>
+            <th className="px-4 py-2.5 bg-primary border-none rounded-tl-full rounded-bl-full whitespace-nowrap">
+              No
+            </th>
+            <th className="px-4 py-2.5 bg-primary border-none whitespace-nowrap">
+              Bulan
+            </th>
+            <th className="px-4 py-2.5 bg-primary border-none whitespace-nowrap">
+              Tahun
+            </th>
+            <th className="px-4 py-2.5 bg-primary border-none text-center whitespace-nowrap">
+              Pernikahan
+            </th>
+            <th className="px-4 py-2.5 bg-primary border-none text-center whitespace-nowrap">
+              Isbat Nikah
+            </th>
+            <th className="px-4 py-2.5 bg-primary border-none text-center rounded-tr-full rounded-br-full whitespace-nowrap">
+              Aksi
+            </th>
           </tr>
         </thead>
         <tbody className="[&>tr:not(:last-child)>td]:border-b [&>tr:not(:last-child)>td]:border-gray-100">
@@ -73,7 +85,7 @@ export const PernikahanTable: React.FC<Props> = ({
                 <td className="px-4 py-2.5 text-center">
                   <Badge
                     variant="outline"
-                    className="bg-blue-50 text-blue-700 border-blue-200"
+                    className="bg-primary/10 text-primary border-primary/20"
                   >
                     {item.pernikahan}
                   </Badge>
@@ -81,7 +93,7 @@ export const PernikahanTable: React.FC<Props> = ({
                 <td className="px-4 py-2.5 text-center">
                   <Badge
                     variant="outline"
-                    className="bg-purple-50 text-purple-700 border-purple-200"
+                    className="bg-primary/10 text-primary border-primary/20"
                   >
                     {item.isbat_nikah}
                   </Badge>
