@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Landmark } from "lucide-react";
 import { DirectoryEmptyState } from "@/components/DirectoryEmptyState";
 import { DirectoryCard, DirectoryCardSkeleton } from "@/components/DirectoryCard";
 import { DirectoryPagination } from "@/components/DirectoryPagination";
 import type { TempatIbadah } from "../types";
+import { useTempatIbadahList } from "../hooks/useTempatIbadahList";
 import masjidIcon from "@/assets/religious-icons/masjid.svg";
 import gerejaIcon from "@/assets/religious-icons/gereja.svg";
 import viharaIcon from "@/assets/religious-icons/vihara.svg";
@@ -29,33 +29,13 @@ export function TempatIbadahListSection({
   data,
   isLoading = false,
 }: TempatIbadahListSectionProps) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 12; // 3 rows of 4 cards
-  const sectionRef = useRef<HTMLElement>(null);
-  const prevPage = useRef(currentPage);
-
-  useEffect(() => {
-    // Reset page to 1 whenever data (search/filter results) changes
-    setCurrentPage(1);
-  }, [data]);
-
-  useEffect(() => {
-    // Only scroll if the page actually changed (prevents scrolling on Strict Mode remounts)
-    if (prevPage.current !== currentPage) {
-      prevPage.current = currentPage;
-      
-      // Smooth scroll to the top of the section when page changes
-      const offset = 80; // Account for any fixed headers if present
-      if (sectionRef.current) {
-        const top = sectionRef.current.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: "smooth" });
-      }
-    }
-  }, [currentPage]);
-
-  const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentData = data.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const {
+    currentPage,
+    setCurrentPage,
+    sectionRef,
+    totalPages,
+    currentData,
+  } = useTempatIbadahList(data);
 
   return (
     <section ref={sectionRef} className="w-full bg-white pb-18 flex-grow">
