@@ -1,48 +1,36 @@
-import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { GraduationCap } from "lucide-react";
 import { DirectoryEmptyState } from "@/components/DirectoryEmptyState";
-import { DirectoryCard } from "@/components/DirectoryCard";
+import { DirectoryCard, DirectoryCardSkeleton } from "@/components/DirectoryCard";
 import { DirectoryPagination } from "@/components/DirectoryPagination";
 import type { Madrasah } from "../types";
-import madrasahImg from "@/assets/madrasah.webp";
+import { useMadrasahList } from "../hooks/useMadrasahList";
+import madrasahImg from "@/assets/madrasah.webp"; // Fallback image
 
 interface MadrasahListSectionProps {
   data: Madrasah[];
+  isLoading?: boolean;
 }
 
-export function MadrasahListSection({ data }: MadrasahListSectionProps) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 12; // 3 rows of 4 cards
-  const sectionRef = useRef<HTMLElement>(null);
-  const prevPage = useRef(currentPage);
-
-  useEffect(() => {
-    // Reset page to 1 whenever data (search/filter results) changes
-    setCurrentPage(1);
-  }, [data]);
-
-  useEffect(() => {
-    // Only scroll if the page actually changed
-    if (prevPage.current !== currentPage) {
-      prevPage.current = currentPage;
-      
-      const offset = 80;
-      if (sectionRef.current) {
-        const top = sectionRef.current.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: "smooth" });
-      }
-    }
-  }, [currentPage]);
-
-  const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentData = data.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+export function MadrasahListSection({ data, isLoading = false }: MadrasahListSectionProps) {
+  const {
+    currentPage,
+    setCurrentPage,
+    sectionRef,
+    totalPages,
+    currentData,
+  } = useMadrasahList(data);
 
   return (
     <section ref={sectionRef} className="w-full bg-white pb-18 flex-grow">
       <div className="container-custom">
-        {data.length > 0 ? (
+        {isLoading ? (
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+            {Array.from({ length: 8 }).map((_, index) => (
+              <DirectoryCardSkeleton key={`skeleton-${index}`} />
+            ))}
+          </div>
+        ) : data.length > 0 ? (
           <>
             <div 
               key={currentPage} 
@@ -51,7 +39,7 @@ export function MadrasahListSection({ data }: MadrasahListSectionProps) {
               {currentData.map((sch) => (
                 <Link key={sch.id} to={`/layanan/madrasah/${sch.id}`} className="block h-full group/link">
                   <DirectoryCard
-                    imageSrc={madrasahImg}
+                    imageSrc={sch.image ? (sch.image.startsWith('http') ? sch.image : `http://localhost:8000${sch.image.startsWith('/') ? '' : '/'}${sch.image}`) : madrasahImg}
                     imageAlt={sch.name}
                     icon={<GraduationCap className="w-4 h-4 sm:w-6 sm:h-6" />}
                     category={sch.level}

@@ -1,22 +1,28 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import {
   MadrasahHeroSection,
   MadrasahListSection,
-  madrasahData,
 } from "@/features/madrasah";
+import { getMadrasahs } from "@/features/madrasah/api";
 
 export default function Madrasah() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLevel, setSelectedLevel] = useState("Semua");
 
-  const filteredData = madrasahData.filter((item) => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['madrasahs-all'],
+    queryFn: getMadrasahs,
+  });
+
+  const filteredData = data?.filter((item) => {
     const matchesSearch =
       item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.address.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesLevel =
       selectedLevel === "Semua" || item.level.startsWith(selectedLevel);
     return matchesSearch && matchesLevel;
-  });
+  }) || [];
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -26,7 +32,7 @@ export default function Madrasah() {
         selectedLevel={selectedLevel}
         setSelectedLevel={setSelectedLevel}
       />
-      <MadrasahListSection data={filteredData} />
+      <MadrasahListSection data={filteredData} isLoading={isLoading} />
     </div>
   );
 }
