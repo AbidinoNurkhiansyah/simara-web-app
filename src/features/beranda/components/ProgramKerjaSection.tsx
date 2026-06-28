@@ -1,27 +1,18 @@
-import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import { useCarousel } from "@/hooks/useCarousel";
 
 import { programs } from "../constants";
 
 export function ProgramKerjaSection() {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % programs.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const nextSlide = () =>
-    setCurrentSlide((prev) => (prev + 1) % programs.length);
-  const prevSlide = () =>
-    setCurrentSlide((prev) => (prev - 1 + programs.length) % programs.length);
+  const { currentSlide, setCurrentSlide, nextSlide, prevSlide } = useCarousel(
+    programs.length,
+    6000
+  );
 
   return (
     <section className="overflow-hidden w-full max-w-full">
