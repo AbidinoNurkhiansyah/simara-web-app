@@ -1,18 +1,9 @@
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import React from "react";
 import type { PernikahanFormData, PernikahanRecord } from "../types";
 import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
 import { X } from "lucide-react";
-
-const formSchema = z.object({
-  bulan: z.string().min(1, "Bulan wajib diisi"),
-  tahun: z.number({ message: "Tahun harus berupa angka" }).min(2000, "Tahun tidak valid").max(2100, "Tahun tidak valid"),
-  pernikahan: z.number({ message: "Harus berupa angka" }).min(0, "Tidak boleh negatif"),
-  isbat_nikah: z.number({ message: "Harus berupa angka" }).min(0, "Tidak boleh negatif"),
-});
+import { usePernikahanForm } from "../hooks/usePernikahanForm";
 
 interface Props {
   isOpen: boolean;
@@ -32,35 +23,8 @@ export const PernikahanFormModal: React.FC<Props> = ({
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
-  } = useForm<PernikahanFormData>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      bulan: "Januari",
-      tahun: new Date().getFullYear(),
-      pernikahan: 0,
-      isbat_nikah: 0,
-    },
-  });
-
-  useEffect(() => {
-    if (initialData) {
-      reset({
-        bulan: initialData.bulan,
-        tahun: initialData.tahun,
-        pernikahan: initialData.pernikahan,
-        isbat_nikah: initialData.isbat_nikah,
-      });
-    } else {
-      reset({
-        bulan: "Januari",
-        tahun: new Date().getFullYear(),
-        pernikahan: 0,
-        isbat_nikah: 0,
-      });
-    }
-  }, [initialData, isOpen, reset]);
+  } = usePernikahanForm(initialData, isOpen);
 
   if (!isOpen) return null;
 
