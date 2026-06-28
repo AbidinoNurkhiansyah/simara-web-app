@@ -36,6 +36,7 @@ import AdminLogin from "../pages/admin/Login";
 import AdminDashboard from "../pages/admin/Dashboard";
 import { PernikahanAdminPage } from "../features/pernikahan";
 import { TempatIbadahAdminPage } from "../features/tempat-ibadah";
+import { MadrasahAdminPage } from "../features/madrasah";
 
 export const AppRouter = () => {
   return (
@@ -56,6 +57,7 @@ export const AppRouter = () => {
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="pernikahan" element={<PernikahanAdminPage />} />
           <Route path="tempat-ibadah" element={<TempatIbadahAdminPage />} />
+          <Route path="madrasah" element={<MadrasahAdminPage />} />
           <Route path="master" element={<div className="p-4 bg-white rounded-xl shadow-sm border border-gray-100">Halaman Data Master (Coming Soon)</div>} />
           <Route path="settings" element={<div className="p-4 bg-white rounded-xl shadow-sm border border-gray-100">Halaman Pengaturan (Coming Soon)</div>} />
         </Route>

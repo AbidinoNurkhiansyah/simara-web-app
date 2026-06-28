@@ -97,7 +97,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               >
                 {item.name}
               </span>
-              {item.hasChevron && (
+              {(item as any).hasChevron && (
                 <div
                   className={`transition-all duration-300 overflow-hidden ${
                     isDesktopCollapsed ? "max-w-0 opacity-0" : "max-w-[24px] opacity-100"
