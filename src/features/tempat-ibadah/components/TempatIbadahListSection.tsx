@@ -5,10 +5,24 @@ import { DirectoryEmptyState } from "@/components/DirectoryEmptyState";
 import { DirectoryCard } from "@/components/DirectoryCard";
 import { DirectoryPagination } from "@/components/DirectoryPagination";
 import type { TempatIbadah } from "../types";
+import masjidIcon from "@/assets/religious-icons/masjid.svg";
+import gerejaIcon from "@/assets/religious-icons/gereja.svg";
+import viharaIcon from "@/assets/religious-icons/vihara.svg";
+import klentengIcon from "@/assets/religious-icons/klenteng-vihara.svg";
 
 interface TempatIbadahListSectionProps {
   data: TempatIbadah[];
 }
+
+const getIconForType = (type: string) => {
+  switch (type.toLowerCase()) {
+    case 'masjid': return masjidIcon;
+    case 'gereja': return gerejaIcon;
+    case 'vihara': return viharaIcon;
+    case 'klenteng': return klentengIcon;
+    default: return undefined;
+  }
+};
 
 export function TempatIbadahListSection({
   data,
@@ -53,14 +67,16 @@ export function TempatIbadahListSection({
               {currentData.map((place) => (
                 <Link key={place.id} to={`/layanan/tempat-ibadah/${place.id}`} className="block h-full group/link">
                   <DirectoryCard
-                    imageSrc={place.image}
+                    imageSrc={place.image ? (place.image.startsWith('http') ? place.image : `http://localhost:8000${place.image.startsWith('/') ? '' : '/'}${place.image}`) : 'https://via.placeholder.com/150'}
                     imageAlt={place.name}
                     icon={
-                      <img
-                        src={place.icon}
-                        alt={place.type}
-                        className="w-4 h-4 sm:w-6 sm:h-6 object-contain"
-                      />
+                      getIconForType(place.type) ? (
+                        <img
+                          src={getIconForType(place.type)}
+                          alt={place.type}
+                          className="w-4 h-4 sm:w-6 sm:h-6 object-contain"
+                        />
+                      ) : undefined
                     }
                     category={place.type}
                     title={place.name}
