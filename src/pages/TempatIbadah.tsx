@@ -44,13 +44,7 @@ export default function TempatIbadah() {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-      {isLoading ? (
-        <div className="py-20 flex justify-center">
-          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-        </div>
-      ) : (
-        <TempatIbadahListSection data={filteredData} />
-      )}
+      <TempatIbadahListSection data={filteredData} isLoading={isLoading} />
     </div>
   );
 }

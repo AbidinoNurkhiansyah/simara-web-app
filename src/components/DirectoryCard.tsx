@@ -73,3 +73,36 @@ export function DirectoryCard({
     </Card>
   );
 }
+
+export function DirectoryCardSkeleton() {
+  return (
+    <Card className="p-0 gap-0 flex flex-col bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative h-full">
+      <CardContent className="p-0 flex flex-col flex-grow h-full animate-pulse">
+        {/* Image Skeleton */}
+        <div className="h-20 sm:h-34 w-full bg-gray-200"></div>
+
+        {/* Floating Icon Skeleton */}
+        <div className="absolute right-3 sm:right-5 top-20 sm:top-34 -translate-y-1/2 w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gray-300 z-10"></div>
+
+        {/* Content Skeleton */}
+        <div className="p-3 sm:p-4 sm:pt-5 flex flex-col flex-grow">
+          {/* Category */}
+          <div className="h-2 sm:h-3 w-16 bg-gray-200 rounded mb-2 sm:mb-3"></div>
+
+          {/* Title */}
+          <div className="h-4 sm:h-5 w-3/4 bg-gray-200 rounded mb-1"></div>
+          <div className="h-4 sm:h-5 w-1/2 bg-gray-200 rounded mb-4"></div>
+
+          {/* Address */}
+          <div className="flex items-start gap-1.5 sm:gap-3 mt-auto">
+            <div className="w-3 h-3 sm:w-5 sm:h-5 rounded-full bg-gray-200 flex-shrink-0 mt-0.5"></div>
+            <div className="flex flex-col gap-2 w-full">
+              <div className="h-2.5 sm:h-3 w-full bg-gray-200 rounded"></div>
+              <div className="h-2.5 sm:h-3 w-2/3 bg-gray-200 rounded"></div>
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
