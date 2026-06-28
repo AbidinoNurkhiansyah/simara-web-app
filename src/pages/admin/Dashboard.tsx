@@ -24,19 +24,19 @@ interface PernikahanRecord {
   isbat_nikah: number;
 }
 
-const MONTH_NAMES = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
+const FULL_MONTH_NAMES = [
+  "Januari",
+  "Februari",
+  "Maret",
+  "April",
   "Mei",
-  "Jun",
-  "Jul",
-  "Agu",
-  "Sep",
-  "Okt",
-  "Nov",
-  "Des",
+  "Juni",
+  "Juli",
+  "Agustus",
+  "September",
+  "Oktober",
+  "November",
+  "Desember",
 ];
 
 const currentYear = new Date().getFullYear();
@@ -127,7 +127,9 @@ export default function AdminDashboard() {
     },
   });
 
-  const currentYearData = pernikahanData?.filter(d => d.tahun === currentYear) || [];
+  const availableYears = pernikahanData ? [...new Set(pernikahanData.map(d => d.tahun))] : [];
+  const maxYear = availableYears.length > 0 ? Math.max(...availableYears) : currentYear;
+  const currentYearData = pernikahanData?.filter(d => d.tahun === maxYear) || [];
 
   const totalMarriages =
     currentYearData.reduce((acc, curr) => acc + curr.pernikahan, 0);
@@ -135,10 +137,10 @@ export default function AdminDashboard() {
     currentYearData.reduce((acc, curr) => acc + curr.isbat_nikah, 0);
 
   // Map stats into monthly bar chart data
-  const barData = MONTH_NAMES.map((name) => {
+  const barData = FULL_MONTH_NAMES.map((name) => {
     const found = currentYearData.find((s) => s.bulan === name);
     return {
-      name,
+      name: name.substring(0, 3),
       pernikahan: found?.pernikahan ?? 0,
       isbat: found?.isbat_nikah ?? 0,
     };
