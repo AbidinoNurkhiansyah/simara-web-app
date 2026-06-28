@@ -125,7 +125,6 @@ export const navItems = [
     name: "Tempat Ibadah",
     path: "/admin/tempat-ibadah",
     icon: <IconTempatIbadah />,
-    hasChevron: true,
   },
   { name: "Madrasah", path: "/admin/madrasah", icon: <IconMadrasah /> },
   { name: "Wakaf", path: "/admin/wakaf", icon: <IconWakaf /> },
