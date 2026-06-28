@@ -7,9 +7,28 @@ interface ApiResponse<T> {
   message?: string;
 }
 
-export const getPernikahans = async (jenis?: "pernikahan" | "isbat_nikah") => {
-  const params = jenis ? { jenis } : {};
-  const response = await axiosInstance.get<ApiResponse<PernikahanRecord[]>>("/pernikahans", { params });
+export interface PaginatedResponse<T> {
+  status: string;
+  data: T[];
+  meta: {
+    current_page: number;
+    last_page: number;
+    per_page: number;
+    total: number;
+  };
+}
+
+export const getPernikahansPaginated = async (page = 1, perPage = 10, search = "", tahun = "all") => {
+  const response = await axiosInstance.get<PaginatedResponse<PernikahanRecord>>(`/pernikahans`, {
+    params: { page, per_page: perPage, search: search || undefined, tahun: tahun !== "all" ? tahun : undefined }
+  });
+  return response.data;
+};
+
+export const getPernikahans = async () => {
+  const response = await axiosInstance.get<ApiResponse<PernikahanRecord[]>>("/pernikahans", {
+    params: { all: 'true' }
+  });
   return response.data.data;
 };
 
