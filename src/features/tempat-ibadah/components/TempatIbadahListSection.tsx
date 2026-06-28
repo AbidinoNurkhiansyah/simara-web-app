@@ -55,7 +55,7 @@ export function TempatIbadahListSection({
               {currentData.map((place) => (
                 <Link key={place.id} to={`/layanan/tempat-ibadah/${place.id}`} className="block h-full group/link">
                   <DirectoryCard
-                    imageSrc={place.image ? (place.image.startsWith('http') ? place.image : `http://localhost:8000${place.image.startsWith('/') ? '' : '/'}${place.image}`) : 'https://via.placeholder.com/150'}
+                    imageSrc={place.image ? (place.image.startsWith('http') ? place.image : `http://localhost:8000${place.image.startsWith('/') ? '' : '/'}${place.image}`) : 'https://placehold.co/400x300?text=No+Image'}
                     imageAlt={place.name}
                     icon={
                       getIconForType(place.type) ? (
