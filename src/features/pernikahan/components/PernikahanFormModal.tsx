@@ -1,8 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import type { PernikahanFormData, PernikahanRecord } from "../types";
 import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
 import { X } from "lucide-react";
+
+const formSchema = z.object({
+  bulan: z.string().min(1, "Bulan wajib diisi"),
+  tahun: z.number({ message: "Tahun harus berupa angka" }).min(2000, "Tahun tidak valid").max(2100, "Tahun tidak valid"),
+  pernikahan: z.number({ message: "Harus berupa angka" }).min(0, "Tidak boleh negatif"),
+  isbat_nikah: z.number({ message: "Harus berupa angka" }).min(0, "Tidak boleh negatif"),
+});
 
 interface Props {
   isOpen: boolean;
@@ -19,40 +29,40 @@ export const PernikahanFormModal: React.FC<Props> = ({
   initialData,
   isLoading,
 }) => {
-  const [formData, setFormData] = useState<PernikahanFormData>({
-    jenis: "pernikahan",
-    nama_suami: "",
-    nama_istri: "",
-    tanggal_pelaksanaan: "",
-    lokasi: "",
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<PernikahanFormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      bulan: "Januari",
+      tahun: new Date().getFullYear(),
+      pernikahan: 0,
+      isbat_nikah: 0,
+    },
   });
 
   useEffect(() => {
     if (initialData) {
-      setFormData({
-        jenis: initialData.jenis,
-        nama_suami: initialData.nama_suami,
-        nama_istri: initialData.nama_istri,
-        tanggal_pelaksanaan: initialData.tanggal_pelaksanaan,
-        lokasi: initialData.lokasi,
+      reset({
+        bulan: initialData.bulan,
+        tahun: initialData.tahun,
+        pernikahan: initialData.pernikahan,
+        isbat_nikah: initialData.isbat_nikah,
       });
     } else {
-      setFormData({
-        jenis: "pernikahan",
-        nama_suami: "",
-        nama_istri: "",
-        tanggal_pelaksanaan: "",
-        lokasi: "",
+      reset({
+        bulan: "Januari",
+        tahun: new Date().getFullYear(),
+        pernikahan: 0,
+        isbat_nikah: 0,
       });
     }
-  }, [initialData, isOpen]);
+  }, [initialData, isOpen, reset]);
 
   if (!isOpen) return null;
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit(formData);
-  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
@@ -63,73 +73,85 @@ export const PernikahanFormModal: React.FC<Props> = ({
           </h3>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition"
+            className="cursor-pointer text-gray-400 hover:text-gray-600 transition"
           >
             <X size={24} />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Jenis Layanan</label>
-            <select
-              required
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              value={formData.jenis}
-              onChange={(e) =>
-                setFormData({ ...formData, jenis: e.target.value as "pernikahan" | "isbat_nikah" })
-              }
-            >
-              <option value="pernikahan">Pernikahan</option>
-              <option value="isbat_nikah">Isbat Nikah</option>
-            </select>
-          </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">Bulan</label>
+              <select
+                {...register("bulan")}
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <option value="Januari">Januari</option>
+                <option value="Februari">Februari</option>
+                <option value="Maret">Maret</option>
+                <option value="April">April</option>
+                <option value="Mei">Mei</option>
+                <option value="Juni">Juni</option>
+                <option value="Juli">Juli</option>
+                <option value="Agustus">Agustus</option>
+                <option value="September">September</option>
+                <option value="Oktober">Oktober</option>
+                <option value="November">November</option>
+                <option value="Desember">Desember</option>
+              </select>
+              {errors.bulan && <span className="text-xs text-red-500">{errors.bulan.message}</span>}
+            </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Nama Suami</label>
-            <Input
-              required
-              placeholder="Masukkan nama suami"
-              value={formData.nama_suami}
-              onChange={(e) => setFormData({ ...formData, nama_suami: e.target.value })}
-            />
-          </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">Tahun</label>
+              <Input
+                type="number"
+                placeholder="Contoh: 2026"
+                {...register("tahun", { valueAsNumber: true })}
+              />
+              {errors.tahun && <span className="text-xs text-red-500">{errors.tahun.message}</span>}
+            </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Nama Istri</label>
-            <Input
-              required
-              placeholder="Masukkan nama istri"
-              value={formData.nama_istri}
-              onChange={(e) => setFormData({ ...formData, nama_istri: e.target.value })}
-            />
-          </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                Jumlah Pernikahan
+              </label>
+              <Input
+                type="number"
+                placeholder="0"
+                {...register("pernikahan", { valueAsNumber: true })}
+              />
+              {errors.pernikahan && <span className="text-xs text-red-500">{errors.pernikahan.message}</span>}
+            </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Tanggal Pelaksanaan</label>
-            <Input
-              required
-              type="date"
-              value={formData.tanggal_pelaksanaan}
-              onChange={(e) => setFormData({ ...formData, tanggal_pelaksanaan: e.target.value })}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Lokasi</label>
-            <Input
-              required
-              placeholder="Masukkan lokasi pelaksanaan"
-              value={formData.lokasi}
-              onChange={(e) => setFormData({ ...formData, lokasi: e.target.value })}
-            />
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                Jumlah Isbat Nikah
+              </label>
+              <Input
+                type="number"
+                placeholder="0"
+                {...register("isbat_nikah", { valueAsNumber: true })}
+              />
+              {errors.isbat_nikah && <span className="text-xs text-red-500">{errors.isbat_nikah.message}</span>}
+            </div>
           </div>
 
           <div className="pt-4 flex justify-end space-x-2">
-            <Button type="button" variant="outline" onClick={onClose}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onClose}
+              className="cursor-pointer"
+            >
               Batal
             </Button>
-            <Button type="submit" disabled={isLoading} className="bg-[#1e4d2b] hover:bg-[#15361e] text-white">
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="bg-[#1e4d2b] hover:bg-[#15361e] text-white cursor-pointer"
+            >
               {isLoading ? "Menyimpan..." : "Simpan"}
             </Button>
           </div>

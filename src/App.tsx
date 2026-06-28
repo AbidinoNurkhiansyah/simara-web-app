@@ -9,25 +9,18 @@ function App() {
       <BrowserRouter>
         <AppRouter />
         <Toaster
-          position="top-center"
+          position="top-right"
           richColors
           expand={false}
-          closeButton
+          duration={3000}
           toastOptions={{
             style: {
-              borderRadius: '14px',
-              fontSize: '14px',
-              fontWeight: '500',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.2)',
-              padding: '16px 20px',
+              borderRadius: "14px",
+              fontSize: "14px",
+              fontWeight: "500",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.2)",
+              padding: "16px 20px",
             },
-          }}
-          style={{
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            right: 'auto',
-            bottom: 'auto',
           }}
         />
       </BrowserRouter>

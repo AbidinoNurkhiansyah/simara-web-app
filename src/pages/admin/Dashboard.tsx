@@ -16,12 +16,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-interface MonthlyStat {
+interface PernikahanRecord {
   id: number;
-  month: number;
-  year: number;
-  marriages_count: number;
-  isbats_count: number;
+  bulan: string;
+  tahun: number;
+  pernikahan: number;
+  isbat_nikah: number;
 }
 
 const MONTH_NAMES = [
@@ -39,15 +39,7 @@ const MONTH_NAMES = [
   "Des",
 ];
 
-// Dummy 5-year data for the line chart (5 tahun terakhir sebelum tahun ini)
 const currentYear = new Date().getFullYear();
-const YEARLY_DATA = [
-  { year: (currentYear - 5).toString(), pernikahan: 260, isbat: 380 },
-  { year: (currentYear - 4).toString(), pernikahan: 740, isbat: 630 },
-  { year: (currentYear - 3).toString(), pernikahan: 500, isbat: 490 },
-  { year: (currentYear - 2).toString(), pernikahan: 900, isbat: 760 },
-  { year: (currentYear - 1).toString(), pernikahan: 960, isbat: 640 },
-];
 
 // Stat Card Icon components
 const IconPernikahan = () => (
@@ -127,28 +119,47 @@ export default function AdminDashboard() {
     }
   }, [location, navigate]);
 
-  const { data: stats, isLoading } = useQuery({
-    queryKey: ["stats"],
+  const { data: pernikahanData, isLoading } = useQuery({
+    queryKey: ["pernikahans"],
     queryFn: async () => {
-      const response = await api.get("/stats");
-      return response.data as MonthlyStat[];
+      const response = await api.get("/pernikahans", { params: { all: 'true' } });
+      return response.data.data as PernikahanRecord[];
     },
   });
 
+  const currentYearData = pernikahanData?.filter(d => d.tahun === currentYear) || [];
+
   const totalMarriages =
-    stats?.reduce((acc, curr) => acc + curr.marriages_count, 0) || 0;
+    currentYearData.reduce((acc, curr) => acc + curr.pernikahan, 0);
   const totalIsbats =
-    stats?.reduce((acc, curr) => acc + curr.isbats_count, 0) || 0;
+    currentYearData.reduce((acc, curr) => acc + curr.isbat_nikah, 0);
 
   // Map stats into monthly bar chart data
-  const barData = MONTH_NAMES.map((name, idx) => {
-    const found = stats?.find((s) => s.month === idx + 1);
+  const barData = MONTH_NAMES.map((name) => {
+    const found = currentYearData.find((s) => s.bulan === name);
     return {
       name,
-      pernikahan: found?.marriages_count ?? 0,
-      isbat: found?.isbats_count ?? 0,
+      pernikahan: found?.pernikahan ?? 0,
+      isbat: found?.isbat_nikah ?? 0,
     };
   });
+
+  // Calculate YEARLY_DATA for 5 years back
+  const yearlyStatsMap = new Map<number, { year: string; pernikahan: number; isbat: number }>();
+  if (pernikahanData) {
+    pernikahanData.forEach((record) => {
+      if (!yearlyStatsMap.has(record.tahun)) {
+        yearlyStatsMap.set(record.tahun, { year: record.tahun.toString(), pernikahan: 0, isbat: 0 });
+      }
+      const stat = yearlyStatsMap.get(record.tahun)!;
+      stat.pernikahan += record.pernikahan;
+      stat.isbat += record.isbat_nikah;
+    });
+  }
+
+  const YEARLY_DATA = Array.from(yearlyStatsMap.values())
+    .sort((a, b) => parseInt(a.year) - parseInt(b.year))
+    .slice(-5);
 
   const statCards = [
     {
