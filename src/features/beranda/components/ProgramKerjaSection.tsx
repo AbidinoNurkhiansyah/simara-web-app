@@ -1,23 +1,15 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { useNavigate } from "react-router-dom";
-import { useCarousel } from "@/hooks/useCarousel";
-
-import { programs } from "../constants";
+import { Link } from "react-router-dom";
+import { useProgramKerja } from "../hooks/useProgramKerja";
 
 export function ProgramKerjaSection() {
-  const navigate = useNavigate();
-  const { currentSlide, setCurrentSlide, nextSlide, prevSlide } = useCarousel(
-    programs.length,
-    6000
-  );
+  const { data, isLoading, scrollContainerRef, scrollLeft, scrollRight } =
+    useProgramKerja();
 
   return (
-    <section className="overflow-hidden w-full max-w-full">
+    <section className="overflow-hidden w-full pt-6 pb-12 md:pt-8 md:pb-16 container-custom">
       {/* Title */}
-      <div className="text-center max-w-2xl mx-auto space-y-3 mb-10 md:mb-16 px-4">
+      <div className="text-center max-w-2xl mx-auto space-y-3 mb-10 md:mb-16">
         <h2 className="text-3xl md:text-4xl font-extrabold text-text-primary">
           Program Kerja Kami
         </h2>
@@ -27,100 +19,92 @@ export function ProgramKerjaSection() {
         </p>
       </div>
 
-      {/* Coverflow Carousel Container */}
-      <div className="relative w-full h-[280px] md:h-[420px] flex items-center justify-center">
-        {programs.map((prog, idx) => {
-          const diff = idx - currentSlide;
-          let offset = diff;
-          // Handle infinite visual loop mapping for 3 items
-          if (diff === programs.length - 1) offset = -1;
-          if (diff === -(programs.length - 1)) offset = 1;
-
-          let transformClasses = "opacity-0 scale-75 z-0 pointer-events-none";
-          if (offset === 0) {
-            transformClasses =
-              "opacity-100 scale-100 z-30 translate-x-0 shadow-[0_20px_50px_rgb(0,0,0,0.12)] cursor-pointer hover:scale-[1.02] transition-transform";
-          } else if (offset === -1) {
-            transformClasses =
-              "opacity-60 scale-[0.85] md:scale-90 z-20 -translate-x-[90%] sm:-translate-x-[100%] cursor-pointer hover:opacity-80 shadow-[0_8px_30px_rgb(0,0,0,0.04)]";
-          } else if (offset === 1) {
-            transformClasses =
-              "opacity-60 scale-[0.85] md:scale-90 z-20 translate-x-[90%] sm:translate-x-[100%] cursor-pointer hover:opacity-80 shadow-[0_8px_30px_rgb(0,0,0,0.04)]";
-          }
-
-          return (
-            <Card
-              key={idx}
-              onClick={() => {
-                if (offset === -1) prevSlide();
-                else if (offset === 1) nextSlide();
-                else if (offset === 0) navigate(`/program/${idx + 1}`);
-              }}
-              className={`p-0 gap-0 absolute w-[70%] sm:w-[60%] md:w-[50%] lg:w-[38%] h-full transition-all duration-700 ease-out rounded-3xl overflow-hidden bg-white border border-gray-100 flex flex-col ${transformClasses}`}
+      <div className="relative group">
+        {isLoading ? (
+          <div className="flex justify-center items-center h-48">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          </div>
+        ) : data.length > 0 ? (
+          <>
+            <div
+              ref={scrollContainerRef}
+              className="flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory pb-8 pt-4 hide-scrollbar"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
-              <CardContent className="p-0 flex flex-col h-full">
-                {/* Image Section */}
-                <div className="relative w-full h-[55%] md:h-[60%] bg-gray-100">
-                  <img
-                    src={prog.image}
-                    alt={prog.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-2 left-2 sm:top-4 sm:left-4">
-                    <Badge className="px-2 py-1 sm:px-3.5 sm:py-1.5 rounded-lg sm:rounded-xl bg-primary hover:bg-primary border-0 text-accent font-nunito font-semibold text-[8px] sm:text-xs uppercase tracking-tight shadow-md">
-                      {prog.tag}
-                    </Badge>
-                  </div>
+              {data.map((prg) => (
+                <div
+                  key={prg.id}
+                  className="w-[85vw] sm:w-[45vw] lg:w-[30vw] xl:w-[23vw] flex-shrink-0 snap-start flex"
+                >
+                  <Link
+                    to={`/program/${prg.id}`}
+                    className="bg-white w-full h-full rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col hover:-translate-y-1 hover:shadow-md transition duration-300 group/card"
+                  >
+                    <div className="w-full h-48 sm:h-40 overflow-hidden">
+                      <img
+                        src={
+                          prg.image.startsWith("http")
+                            ? prg.image
+                            : `http://localhost:8000${prg.image.startsWith("/") ? "" : "/"}${prg.image}`
+                        }
+                        alt={prg.title}
+                        className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src =
+                            "https://placehold.co/600x400?text=No+Image";
+                        }}
+                      />
+                    </div>
+                    <div className="p-4 md:p-5 flex flex-col flex-grow gap-2.5">
+                      <h3 className="font-bold text-slate-800 text-sm md:text-base leading-snug line-clamp-2">
+                        {prg.title}
+                      </h3>
+                      <span className="text-sm font-semibold text-[#16a34a]">
+                        {new Intl.DateTimeFormat("id-ID", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        }).format(new Date(prg.date))}
+                      </span>
+                      <p className="text-sm text-gray-500 leading-relaxed line-clamp-3">
+                        {prg.desc}
+                      </p>
+                    </div>
+                  </Link>
                 </div>
+              ))}
+            </div>
 
-                {/* Content Section */}
-                <div className="p-3 sm:p-6 flex-grow flex flex-col justify-center text-left">
-                  <h3 className="text-sm sm:text-xl font-extrabold text-text-primary leading-tight mb-1 sm:mb-2">
-                    {prog.title}
-                  </h3>
-                  <span className="text-primary font-bold text-[8px] sm:text-xs uppercase tracking-widest block mb-1 sm:mb-1.5">
-                    {prog.date}
-                  </span>
-                  <p className="text-text-secondary text-[10px] sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-3">
-                    {prog.desc}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
-      </div>
-
-      {/* Navigation Controls */}
-      <div className="flex justify-center items-center gap-4 sm:gap-6 mt-6 sm:mt-12 md:mt-16">
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={prevSlide}
-          className="p-3 rounded-full border border-gray-200 hover:bg-gray-50 text-primary transition-colors focus:outline-none w-auto h-auto"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </Button>
-        <div className="flex gap-2">
-          {programs.map((_, idx) => (
+            {/* Navigation Buttons */}
             <button
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              className={`h-2.5 rounded-full transition-all focus:outline-none ${
-                idx === currentSlide ? "bg-primary w-8" : "bg-gray-300 w-2.5"
-              }`}
-            />
-          ))}
-        </div>
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={nextSlide}
-          className="p-3 rounded-full border border-gray-200 hover:bg-gray-50 text-primary transition-colors focus:outline-none w-auto h-auto"
-        >
-          <ChevronRight className="w-5 h-5" />
-        </Button>
+              onClick={scrollLeft}
+              className="absolute left-0 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-md rounded-full flex items-center justify-center text-primary opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-0 z-10 hover:bg-primary hover:text-white border border-gray-100"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={scrollRight}
+              className="absolute right-0 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-md rounded-full flex items-center justify-center text-primary opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-0 z-10 hover:bg-primary hover:text-white border border-gray-100"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </>
+        ) : (
+          <div className="text-center text-gray-500 py-12">
+            Belum ada program yang ditambahkan.
+          </div>
+        )}
       </div>
+
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+      `,
+        }}
+      />
     </section>
   );
 }
