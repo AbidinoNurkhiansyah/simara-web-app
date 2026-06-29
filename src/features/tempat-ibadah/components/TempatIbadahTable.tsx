@@ -24,7 +24,7 @@ export const TempatIbadahTable: React.FC<Props> = ({
             <th className="px-4 py-2.5 bg-primary border-none rounded-tl-full rounded-bl-full whitespace-nowrap">
               No
             </th>
-            <th className="px-4 py-2.5 bg-primary border-none whitespace-nowrap">
+            <th className="px-4 py-2.5 bg-primary border-none text-center whitespace-nowrap">
               Foto
             </th>
             <th className="px-4 py-2.5 bg-primary border-none whitespace-nowrap">
@@ -78,7 +78,7 @@ export const TempatIbadahTable: React.FC<Props> = ({
             data.map((item, index) => (
               <tr key={item.id} className="hover:bg-gray-50 transition-colors">
                 <td className="px-4 py-2.5">{index + 1}</td>
-                <td className="px-4 py-2.5">
+                <td className="px-4 py-2.5 text-center">
                   {item.image && (
                     <img
                       src={
@@ -87,7 +87,7 @@ export const TempatIbadahTable: React.FC<Props> = ({
                           : `http://localhost:8000${item.image.startsWith("/") ? "" : "/"}${item.image}`
                       }
                       alt={item.name}
-                      className="w-16 h-12 object-cover rounded shadow-sm"
+                      className="w-16 h-12 mx-auto object-cover rounded shadow-sm"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src =
                           "https://placehold.co/150x150?text=No+Image";
