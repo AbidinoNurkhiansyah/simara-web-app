@@ -4,7 +4,7 @@ import { services } from "../constants";
 
 export function LayananSection() {
   return (
-    <section className="container-custom pt-8 md:pt-14 pb-4 md:pb-6">
+    <section className="container-custom py-12 md:py-16">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {services.map((svc) => (
           <Link

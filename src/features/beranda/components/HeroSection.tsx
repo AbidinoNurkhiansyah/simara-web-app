@@ -8,12 +8,12 @@ import bannerImg from "@/assets/banner.webp";
 
 export function HeroSection() {
   const stats = useHeroStats();
-  
+
   const animatedMarriages = useCountUp(stats.marriagesThisMonth, 2500);
   const animatedIsbats = useCountUp(stats.isbatsThisMonth, 2500);
 
   return (
-    <section className="relative w-full h-[260px] sm:h-[300px] lg:h-[300px] overflow-visible flex items-center bg-background z-20">
+    <section className="relative w-full h-[260px] sm:h-[300px] lg:h-[300px] overflow-visible flex items-center bg-background z-20 mb-10">
       {/* Background Banner Full-Bleed (Mentok Kanan-Kiri & Terlihat Semua) */}
       <div className="absolute inset-0 w-full h-full z-0">
         <img
