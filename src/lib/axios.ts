@@ -27,8 +27,13 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      localStorage.removeItem('admin_token');
-      // Redirect to login could be handled here or in the UI layer
+      // Import store here to avoid circular dependency issues if any
+      import('../app/store').then(({ store }) => {
+        import('../features/auth/authSlice').then(({ logout }) => {
+          store.dispatch(logout());
+          window.location.href = '/admin/login';
+        });
+      });
     }
     return Promise.reject(error);
   }
