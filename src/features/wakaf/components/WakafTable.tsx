@@ -50,7 +50,7 @@ export const WakafTable: React.FC<Props> = ({ data, onEdit, onDelete, isLoading 
                   "px-4 py-2.5 bg-primary border-none whitespace-nowrap",
                   i === 0 ? "rounded-tl-full rounded-bl-full" : "",
                   i === headers.length - 1 ? "rounded-tr-full rounded-br-full text-center" : "",
-                  h === "Aksi" ? "text-center" : "",
+                  h === "Aksi" || h === "Foto" ? "text-center" : "",
                 ].join(" ")}
               >
                 {h}
@@ -78,19 +78,19 @@ export const WakafTable: React.FC<Props> = ({ data, onEdit, onDelete, isLoading 
                 <td className="px-4 py-3 text-gray-500">{index + 1}</td>
 
                 {/* Foto */}
-                <td className="px-4 py-3">
+                <td className="px-4 py-3 text-center">
                   {item.image ? (
                     <img
                       src={getImageSrc(item.image)}
                       alt={item.name}
-                      className="w-20 h-14 object-cover rounded-lg shadow-sm"
+                      className="w-20 h-14 mx-auto object-cover rounded-lg shadow-sm"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src =
                           "https://placehold.co/200x140?text=No+Image";
                       }}
                     />
                   ) : (
-                    <div className="w-20 h-14 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <div className="w-20 h-14 mx-auto bg-gray-100 rounded-lg flex items-center justify-center">
                       <MapPin size={16} className="text-gray-300" />
                     </div>
                   )}
@@ -105,11 +105,7 @@ export const WakafTable: React.FC<Props> = ({ data, onEdit, onDelete, isLoading 
                     <div className="flex items-center gap-2">
                       <Badge
                         variant="outline"
-                        className={`text-[10px] px-1.5 py-0 h-5 ${
-                          item.jenis_properti === "Tanah"
-                            ? "bg-amber-50 text-amber-700 border-amber-200"
-                            : "bg-blue-50 text-blue-700 border-blue-200"
-                        }`}
+                        className="bg-primary/10 text-primary border-primary/20 text-[10px] px-1.5 py-0 h-5"
                       >
                         {item.jenis_properti}
                       </Badge>
