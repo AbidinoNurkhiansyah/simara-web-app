@@ -1,3 +1,6 @@
+// =============================================
+// Public portal constants
+// =============================================
 import type { WakafRequirement } from "../types";
 
 export const wakafRequirements: WakafRequirement[] = [
@@ -35,3 +38,10 @@ export const wakafRequirements: WakafRequirement[] = [
     image: "/src/assets/form-wakaf/8.webp",
   },
 ];
+
+// =============================================
+// Admin constants
+// =============================================
+export const jenisPropertiOptions = ["Tanah", "Bangunan"] as const;
+
+export type JenisProperti = (typeof jenisPropertiOptions)[number];
