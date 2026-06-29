@@ -1,0 +1,63 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: simara-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      # Anonymouse volume for node_modules so it uses the container's version, not host's
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+    networks:
+      - simara-network
+
+  backend:
+    build:
+      context: ./simara-api
+      dockerfile: Dockerfile.dev
+    container_name: simara-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./simara-api:/var/www
+      # Anonymouse volume for vendor so it uses the container's version
+      - /var/www/vendor
+    environment:
+      - DB_CONNECTION=pgsql
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=${DB_DATABASE:-postgres}
+      - DB_USERNAME=${DB_USERNAME:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD:-postgres}
+    depends_on:
+      - db
+    networks:
+      - simara-network
+
+  db:
+    image: postgres:15-alpine
+    container_name: simara-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_DATABASE:-postgres}
+    ports:
+      - "5432:5432"
+    volumes:
+      - simara-db-data:/var/lib/postgresql/data
+    networks:
+      - simara-network
+
+volumes:
+  simara-db-data:
+
+networks:
+  simara-network:
+    driver: bridge
