@@ -6,5 +6,9 @@ export * from "./components/JenisSection";
 export * from "./components/RequirementsSection";
 export * from "./components/CTASection";
 
+// Public Directory Components
+export * from "./components/WakafHeroSection";
+export * from "./components/WakafListSection";
+
 // Admin components
 export * from "./components/WakafAdminPage";
