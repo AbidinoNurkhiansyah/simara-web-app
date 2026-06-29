@@ -1,33 +1,60 @@
-import { programsData } from "../constants";
+import { useState, useEffect } from "react";
+import { getProgramsPaginated } from "../api";
+import type { ProgramItem } from "../types";
 
 export function ProgramHero() {
+  const [programs, setPrograms] = useState<ProgramItem[]>([]);
+
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        const result = await getProgramsPaginated(1, 5);
+        setPrograms(result.data);
+      } catch (error) {
+        console.error("Error fetching programs:", error);
+      }
+    };
+    fetchPrograms();
+  }, []);
+
+  // Use some placeholder colors/images if we don't have 5 programs yet
+  const placeholders = [
+    "https://placehold.co/400x400/1e4d2b/FFFFFF?text=Program+1",
+    "https://placehold.co/400x400/2a6639/FFFFFF?text=Program+2",
+    "https://placehold.co/400x400/367f47/FFFFFF?text=Program+3",
+    "https://placehold.co/400x400/429855/FFFFFF?text=Program+4",
+    "https://placehold.co/400x400/4eb163/FFFFFF?text=Program+5",
+  ];
+
   return (
     <section className="relative h-[300px] md:h-[400px] w-full overflow-hidden">
-      {/* Top-Left Curve */}
-      <div className="absolute top-0 left-0 z-10 w-32 md:w-48 text-white">
-        <svg
-          viewBox="0 0 200 200"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M0,0 L200,0 C100,0 0,100 0,200 Z" />
-        </svg>
-      </div>
-
       {/* 5 Images Flex Row */}
       <div className="flex h-full w-full divide-x-[3px] divide-white">
-        {programsData.slice(0, 5).map((prg, i) => (
-          <div
-            key={`hero-${i}`}
-            className={`flex-1 h-full ${i > 2 ? "hidden md:block" : ""}`}
-          >
-            <img
-              src={prg.image}
-              className="w-full h-full object-cover"
-              alt={`Hero ${i + 1}`}
-            />
-          </div>
-        ))}
+        {Array.from({ length: 5 }).map((_, i) => {
+          const prg = programs[i];
+          let imgUrl = placeholders[i];
+          if (prg && prg.image) {
+            imgUrl = prg.image.startsWith("http")
+              ? prg.image
+              : `http://localhost:8000${prg.image.startsWith("/") ? "" : "/"}${prg.image}`;
+          }
+
+          return (
+            <div
+              key={`hero-${i}`}
+              className={`flex-1 h-full ${i > 2 ? "hidden md:block" : ""}`}
+            >
+              <img
+                src={imgUrl}
+                className="w-full h-full object-cover"
+                alt={`Hero ${i + 1}`}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = placeholders[i];
+                }}
+              />
+            </div>
+          );
+        })}
       </div>
 
       {/* Bottom Wave */}

@@ -5,3 +5,4 @@ export * from "./components/ProgramIntro";
 export * from "./components/ProgramGrid";
 export * from "./components/ProgramDetailHero";
 export * from "./components/ProgramDetailContent";
+export * from "./components/ProgramAdminPage";
