@@ -1,15 +1,29 @@
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-export function ProgramDetailHero() {
+interface Props {
+  image?: string;
+}
+
+export function ProgramDetailHero({ image }: Props) {
   const navigate = useNavigate();
+
+  let imgUrl = "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200";
+  if (image) {
+    imgUrl = image.startsWith("http")
+      ? image
+      : `http://localhost:8000${image.startsWith("/") ? "" : "/"}${image}`;
+  }
 
   return (
     <section className="relative h-[300px] md:h-[400px] w-full overflow-hidden">
       <img
-        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200"
+        src={imgUrl}
         alt="Banner Program"
         className="w-full h-full object-cover"
+        onError={(e) => {
+          (e.target as HTMLImageElement).src = "https://placehold.co/1200x400?text=No+Image";
+        }}
       />
       <div className="absolute inset-0 bg-black/40"></div>
       <div className="absolute inset-0 container-custom pt-8">
