@@ -1,0 +1,20 @@
+# Gunakan node versi 20 berbasis Alpine
+FROM node:20-alpine
+
+# Set direktori kerja di dalam kontainer
+WORKDIR /app
+
+# Copy package.json dan package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy seluruh source code
+COPY . .
+
+# Ekspos port default Vite
+EXPOSE 5173
+
+# Jalankan server Vite dengan opsi host agar dapat diakses dari luar kontainer
+CMD ["npm", "run", "dev", "--", "--host"]
