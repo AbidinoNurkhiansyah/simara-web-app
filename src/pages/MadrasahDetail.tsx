@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { madrasahData } from "@/features/madrasah/constants";
+import { useQuery } from "@tanstack/react-query";
+import { getMadrasahById } from "@/features/madrasah/api";
 import { Button } from "@/components/ui/button";
 import { MadrasahDetailHero } from "@/features/madrasah/components/detail/MadrasahDetailHero";
 import { MadrasahDetailDescription } from "@/features/madrasah/components/detail/MadrasahDetailDescription";
@@ -10,11 +11,23 @@ export default function MadrasahDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const place = madrasahData.find((p) => p.id === Number(id));
+  const { data: place, isLoading } = useQuery({
+    queryKey: ['madrasah', id],
+    queryFn: () => getMadrasahById(Number(id)),
+    enabled: !!id,
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
 
   if (!place) {
     return (

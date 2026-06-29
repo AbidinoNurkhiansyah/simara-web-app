@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import type { MadrasahFormData, Madrasah } from "../types";
 import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
@@ -21,43 +21,16 @@ export const MadrasahFormModal: React.FC<Props> = ({
   initialData,
   isLoading,
 }) => {
-  const { form, handleSubmit } = useMadrasahForm({
+  const { form, imagePreview, handleImageChange, handleSubmit } = useMadrasahForm({
     initialData: initialData || null,
+    isOpen,
     onSubmit,
   });
 
   const {
     register,
     formState: { errors },
-    setValue,
   } = form;
-
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-
-  useEffect(() => {
-    setImagePreview(
-      initialData?.image 
-        ? initialData.image.startsWith("http") 
-          ? initialData.image 
-          : `http://localhost:8000${initialData.image.startsWith("/") ? "" : "/"}${initialData.image}`
-        : null
-    );
-  }, [initialData]);
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setValue("image", file, { shouldValidate: true });
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setValue("image", null, { shouldValidate: true });
-      setImagePreview(null);
-    }
-  };
 
   if (!isOpen) return null;
 

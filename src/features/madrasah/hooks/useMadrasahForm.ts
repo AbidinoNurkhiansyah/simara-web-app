@@ -1,7 +1,7 @@
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useEffect } from "react";
 import type { Madrasah, MadrasahFormData } from "../types";
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
@@ -16,9 +16,7 @@ const formSchema = z.object({
   map_embed: z.string().optional(),
   image: z.any()
     .refine((file) => {
-      // If it's a string (URL from existing data) or null, it's valid
       if (typeof file === 'string' || file === null || file === undefined) return true;
-      // If it's a File object, check size
       if (file instanceof File) {
         return file.size <= MAX_FILE_SIZE;
       }
@@ -36,11 +34,12 @@ const formSchema = z.object({
 export type MadrasahFormValues = z.infer<typeof formSchema>;
 
 interface UseMadrasahFormProps {
-  initialData: Madrasah | null;
+  initialData?: Madrasah | null;
+  isOpen?: boolean;
   onSubmit: (data: MadrasahFormData) => void;
 }
 
-export const useMadrasahForm = ({ initialData, onSubmit }: UseMadrasahFormProps) => {
+export const useMadrasahForm = ({ initialData, isOpen, onSubmit }: UseMadrasahFormProps) => {
   const form = useForm<MadrasahFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -54,9 +53,12 @@ export const useMadrasahForm = ({ initialData, onSubmit }: UseMadrasahFormProps)
     },
   });
 
+  const { reset, setValue } = form;
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
   useEffect(() => {
     if (initialData) {
-      form.reset({
+      reset({
         name: initialData.name,
         level: initialData.level,
         address: initialData.address,
@@ -65,8 +67,15 @@ export const useMadrasahForm = ({ initialData, onSubmit }: UseMadrasahFormProps)
         map_embed: initialData.mapEmbed || "",
         image: initialData.image || null,
       });
+      setImagePreview(
+        initialData.image 
+          ? initialData.image.startsWith("http") 
+            ? initialData.image 
+            : `http://localhost:8000${initialData.image.startsWith("/") ? "" : "/"}${initialData.image}`
+          : null
+      );
     } else {
-      form.reset({
+      reset({
         name: "",
         level: "",
         address: "",
@@ -75,15 +84,33 @@ export const useMadrasahForm = ({ initialData, onSubmit }: UseMadrasahFormProps)
         map_embed: "",
         image: null,
       });
+      setImagePreview(null);
     }
-  }, [initialData, form]);
+  }, [initialData, isOpen, reset]);
 
-  const handleSubmit = (values: MadrasahFormValues) => {
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setValue("image", file, { shouldValidate: true });
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setValue("image", null, { shouldValidate: true });
+      setImagePreview(null);
+    }
+  };
+
+  const handleFormSubmit = (values: MadrasahFormValues) => {
     onSubmit(values as MadrasahFormData);
   };
 
   return {
     form,
-    handleSubmit: form.handleSubmit(handleSubmit),
+    imagePreview,
+    handleImageChange,
+    handleSubmit: form.handleSubmit(handleFormSubmit),
   };
 };
