@@ -16,6 +16,8 @@ import Suscatin from "../pages/Suscatin";
 import TempatIbadah from "../pages/TempatIbadah";
 import TempatIbadahDetail from "../pages/TempatIbadahDetail";
 import Wakaf from "../pages/Wakaf";
+import WakafDetail from "../pages/WakafDetail";
+import EdukasiWakaf from "../pages/EdukasiWakaf";
 import Madrasah from "../pages/Madrasah";
 
 import MadrasahDetail from "../pages/MadrasahDetail";
@@ -86,7 +88,9 @@ export const AppRouter = () => {
                     path="/layanan/tempat-ibadah/:id"
                     element={<TempatIbadahDetail />}
                   />
+                  <Route path="/edukasi/wakaf" element={<EdukasiWakaf />} />
                   <Route path="/layanan/wakaf" element={<Wakaf />} />
+                  <Route path="/layanan/wakaf/:id" element={<WakafDetail />} />
                   <Route path="/layanan/madrasah" element={<Madrasah />} />
                   <Route path="/layanan/madrasah/:id" element={<MadrasahDetail />} />
                   <Route

@@ -21,7 +21,7 @@ export const layananItems = [
   {
     name: "Wakaf",
     path: "/layanan/wakaf",
-    desc: "Panduan tata cara perwakafan tanah & aset",
+    desc: "Direktori aset wakaf Karawang Barat",
     icon: BookOpen,
   },
   {
