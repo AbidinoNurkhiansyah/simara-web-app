@@ -127,6 +127,22 @@ export default function AdminDashboard() {
     },
   });
 
+  const { data: tempatIbadahData, isLoading: isLoadingTI } = useQuery({
+    queryKey: ["tempatIbadahs", "all"],
+    queryFn: async () => {
+      const response = await api.get("/tempat-ibadahs", { params: { all: 'true' } });
+      return response.data.data as any[];
+    },
+  });
+
+  const { data: madrasahData, isLoading: isLoadingMadrasah } = useQuery({
+    queryKey: ["madrasahs", "all"],
+    queryFn: async () => {
+      const response = await api.get("/madrasahs", { params: { all: 'true' } });
+      return response.data.data as any[];
+    },
+  });
+
   const availableYears = pernikahanData ? [...new Set(pernikahanData.map(d => d.tahun))] : [];
   const maxYear = availableYears.length > 0 ? Math.max(...availableYears) : currentYear;
   const currentYearData = pernikahanData?.filter(d => d.tahun === maxYear) || [];
@@ -146,7 +162,7 @@ export default function AdminDashboard() {
     };
   });
 
-  // Calculate YEARLY_DATA for 5 years back
+  // Calculate YEARLY_DATA for 5 years back (excluding current year)
   const yearlyStatsMap = new Map<number, { year: string; pernikahan: number; isbat: number }>();
   if (pernikahanData) {
     pernikahanData.forEach((record) => {
@@ -160,6 +176,7 @@ export default function AdminDashboard() {
   }
 
   const YEARLY_DATA = Array.from(yearlyStatsMap.values())
+    .filter((stat) => parseInt(stat.year) < currentYear)
     .sort((a, b) => parseInt(a.year) - parseInt(b.year))
     .slice(-5);
 
@@ -174,8 +191,16 @@ export default function AdminDashboard() {
       value: isLoading ? "..." : totalIsbats,
       icon: <IconIsbat />,
     },
-    { label: "Tempat Ibadah", value: 266, icon: <IconTempatIbadah /> },
-    { label: "Madrasah", value: 51, icon: <IconMadrasah /> },
+    { 
+      label: "Tempat Ibadah", 
+      value: isLoadingTI ? "..." : (tempatIbadahData?.length || 0), 
+      icon: <IconTempatIbadah /> 
+    },
+    { 
+      label: "Madrasah", 
+      value: isLoadingMadrasah ? "..." : (madrasahData?.length || 0), 
+      icon: <IconMadrasah /> 
+    },
   ];
 
   return (
